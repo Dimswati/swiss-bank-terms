@@ -1,8 +1,6 @@
 import React from 'react'
 
-type Props = {}
-
-const page = (props: Props) => {
+const page = () => {
     return (
         <main>
             <section className="w-full border-t border-neutral-300 py-4">

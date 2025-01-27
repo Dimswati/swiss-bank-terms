@@ -2,9 +2,7 @@
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
-type Props = {}
-
-const SubmitForm = (props: Props) => {
+const SubmitForm = () => {
 
     const router = useRouter()
 
