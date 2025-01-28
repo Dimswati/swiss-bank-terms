@@ -1,12 +1,22 @@
 "use client"
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import Cookies from "js-cookie"
+
 
 const SubmitForm = () => {
 
     const router = useRouter()
 
     const [isChecked, setIsChecked] = useState(false)
+
+    const handleSubmit = () => {
+        
+        Cookies.set("agreed-terms", "yes", { expires: 1 })
+
+        return router.replace("/thank-you")
+    }
+
 
     return (
         <div>
@@ -16,7 +26,7 @@ const SubmitForm = () => {
                     I have read and understood the above terms and conditions
                 </label>
             </form>
-            <button disabled={!isChecked} onClick={() => router.replace("/thank-you")} className='uppercase disabled:bg-[#073871]/60 disabled:cursor-not-allowed cursor-pointer w-full bg-[#073871] h-11 flex justify-center items-center text-neutral-100'>I agree</button>
+            <button disabled={!isChecked} onClick={handleSubmit} className='uppercase disabled:bg-[#073871]/60 disabled:cursor-not-allowed cursor-pointer w-full bg-[#073871] h-11 flex justify-center items-center text-neutral-100'>I agree</button>
         </div>
     )
 }

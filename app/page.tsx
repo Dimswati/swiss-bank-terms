@@ -1,4 +1,4 @@
-import curves from "../public/curves.jpg"
+// import curves from "../public/curves.jpg"
 import SubmitForm from "./components/SubmitForm";
 
 export default function Home() {
@@ -12,7 +12,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="w-full bg-no-repeat bg-fixed bg-cover bg-blend-overlay bg-neutral-100" style={{ backgroundImage: `url(${curves.src})` }}>
+      <section className="w-full bg-no-repeat bg-fixed bg-cover bg-blend-overlay bg-neutral-100" >
         <div className="max-w-screen-lg container pb-8">
           <h2 className="uppercase text-[1em] mt-4 mb-2 font-semibold">terms and conditions</h2>
           <div className="w-full h-[0.2px] mb-4 bg-neutral-300"></div>
@@ -72,3 +72,5 @@ export default function Home() {
     </main>
   );
 }
+
+// style={{ backgroundImage: `url(${curves.src})` }}
