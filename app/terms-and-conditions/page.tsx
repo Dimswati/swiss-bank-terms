@@ -1,4 +1,4 @@
-import curves from "../../public/curves.jpg"
+// import curves from "../../public/curves.jpg"
 import SubmitForm from "../components/SubmitForm";
 
 export default function Home() {
