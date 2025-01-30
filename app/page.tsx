@@ -8,7 +8,7 @@ export default function Home() {
         <div className="max-w-screen-lg container text-neutral-100">
           <div>
             <p className="mb-2">To our <span className="italic">Esteem Clients</span></p>
-            <p>Obliged by Swiss banking systems procedure, all our customers are urged to follow accept the below terms and conditions for smooth processing of transactions</p>
+            <p>Obliged by Swiss banking systems procedure, all our customers are urged to follow and accept the below terms and conditions for smooth processing of transactions</p>
           </div>
         </div>
       </section>
