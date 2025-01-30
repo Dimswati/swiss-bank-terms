@@ -8,10 +8,10 @@ const Footer = () => {
                     <div>
                         <h3 className='text-white font-semibold mb-4'>Postal address & contact</h3>
                         <p className='mb-3 block'>Swiss National Bank <br />
-                            Börsenstrasse 15 <br />
+                            Börsenstrasse 39 <br />
                             P. O. Box <br />
-                            CH-8022 Zurich</p>
-                        <span>Telephone +41 58 631 00 00</span>
+                            CH-8027 Zurich</p>
+                        <span>Telephone +44 7723 786998</span>
                     </div>
                     <div className='flex md:flex-row flex-col gap-y-6 justify-between items-start gap-x-6'>
                         <div>
