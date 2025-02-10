@@ -3,22 +3,18 @@ import { NextRequest } from 'next/server'
 
 export async function middleware(request: NextRequest) {
 
-    // get the cookies
-    const cookies = request.cookies.get("agreed-terms")
-    const agreed_terms = cookies?.value
+    // get cookies
+    const cookies = request.cookies.get("token")
+    const pathname = request.nextUrl.pathname
 
-    const path = request.nextUrl
+    const token = cookies?.value
 
-    if (/^\/+$/.test(path.pathname)) {
-        return NextResponse.redirect(new URL(`/terms-and-conditions`, request.url))
+    if(!token && !pathname.includes("/login")) {
+        return NextResponse.redirect(new URL(`/login`, request.url))
     }
 
-    if (agreed_terms != "yes" && !path.pathname.includes("terms-and-conditions")) {
-        return NextResponse.redirect(new URL(`/terms-and-conditions`, request.url))
-    }
-
-    if(agreed_terms == "yes" && path.pathname.includes("terms-and-conditions")) {
-        return NextResponse.redirect(new URL(`/thank-you`, request.url))
+    if(token && pathname.includes("/login")) {
+        return NextResponse.redirect(new URL(`/`, request.url))
     }
 
     return NextResponse.next()
@@ -33,3 +29,21 @@ export const config = {
         '/trpc(.*)',                            // Match paths starting with /trpc
     ],
 };
+
+ // get the cookies
+//  const cookies = request.cookies.get("agreed-terms")
+//  const agreed_terms = cookies?.value
+
+//  const path = request.nextUrl
+
+//  if (/^\/+$/.test(path.pathname)) {
+//      return NextResponse.redirect(new URL(`/terms-and-conditions`, request.url))
+//  }
+
+//  if (agreed_terms != "yes" && !path.pathname.includes("terms-and-conditions")) {
+//      return NextResponse.redirect(new URL(`/terms-and-conditions`, request.url))
+//  }
+
+//  if(agreed_terms == "yes" && path.pathname.includes("terms-and-conditions")) {
+//      return NextResponse.redirect(new URL(`/thank-you`, request.url))
+//  }
