@@ -21,7 +21,7 @@ const LoginForm = () => {
   const router = useRouter()
   const [error, setError] = useState<string>()
 
-  const { handleSubmit, register, formState: { errors } } = useForm<FormProps>()
+  const { handleSubmit, register } = useForm<FormProps>()
 
   const onSubmit = (formValues: FormProps) => {
     if (formValues.authtoken == token && formValues.username == username) {

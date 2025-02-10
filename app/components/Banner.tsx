@@ -1,7 +1,4 @@
 "use client"
-
-import { useState, useEffect } from "react"
-import Cookies from "js-cookie"
 import { twMerge } from "tailwind-merge"
 import useBTCAdress from "@/lib/hooks"
 

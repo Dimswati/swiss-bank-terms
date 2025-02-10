@@ -28,7 +28,7 @@ const VerifyAddressForm = () => {
             setAddress(address)
         }
 
-    }, [])
+    })
 
     const onSubmit = (formValues: FormProps) => {
         const submittedaddress = formValues.btcaddress
