@@ -1,11 +1,9 @@
-import { AlarmCheck, Check, CheckCheck } from 'lucide-react'
+import { AlarmCheck, CheckCheck } from 'lucide-react'
 import React from 'react'
 import VerifyAddressForm from '../components/VerifyAddressForm'
 import Banner from '../components/Banner'
 
-type Props = {}
-
-const page = (props: Props) => {
+const page = () => {
   return (
     <main>
       <Banner/>

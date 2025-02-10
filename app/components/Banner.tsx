@@ -2,8 +2,6 @@
 import { twMerge } from "tailwind-merge"
 import useBTCAdress from "@/lib/hooks"
 
-type Props = {}
-
 const Banner = () => {
 
     // const [verifiedAddress, setVerifiedAddress] = useState<string>()
