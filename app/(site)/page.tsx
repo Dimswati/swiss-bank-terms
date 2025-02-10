@@ -57,7 +57,7 @@ const page = () => {
           </div>
           <div className='flex w-full divide-x divide-neutral-200 py-4 border-b border-neutral-200'>
             <div className='md:w-9/12 md:basis-9/12 w-8/12 basis-8/12'>
-              <h5 className='font-semibold'>Re-reimbursement fee</h5>
+              <h5 className='font-semibold'>Reversal fee</h5>
               <p>Website should show auto generate receipt showing payment confirmation of all previous payments</p>
             </div>
             <div className='md:w-3/12 md:basis-3/12 w-4/12 basis-4/12 pl-3'>
@@ -67,8 +67,8 @@ const page = () => {
           </div>
           <div className='flex w-full divide-x divide-neutral-200 pt-4'>
             <div className='md:w-9/12 md:basis-9/12 w-8/12 basis-8/12'>
-              <h5 className='font-semibold'>Re-reimbursement fee</h5>
-              <p>Website should show auto generate receipt showing payment confirmation of all previous payments</p>
+              <h5 className='font-semibold'>Inflation on BTC investment</h5>
+              <p>Inflation on BTC Investment includes capital gains from previous investment</p>
             </div>
             <div className='md:w-3/12 md:basis-3/12 w-4/12 basis-4/12 pl-3'>
               <p className='font-semibold mb-2'>6000 CHF</p>
@@ -87,16 +87,16 @@ const page = () => {
           <div className='flex sm:flex-row gap-x-4 gap-y-6 flex-col sm:divide-x divide-neutral-200'>
             <div className="sm:w-1/2 sm:basis-1/2 w-full basis-full">
               <div className='border-b border-neutral-200 pb-3 mb-2'>
-                <h5 className='text-red-600 text-sm'>Before BTC inflation - 17 FEB 2024</h5>
+                <h5 className='text-red-600 text-sm'>Before BTC inflation - 17/02/2024</h5>
                 <h2 className='font-bold'>2.52098 BTC</h2>
               </div>
               <div className='uppercase font-semibold flex justify-between items-center mb-2'>
                 <h5>amount in usd</h5>
-                <p>$ 105,000</p>
+                <p>$ 111,240.93</p>
               </div>
               <div className='uppercase font-semibold flex justify-between items-center mb-2'>
                 <h5>amount in chf</h5>
-                <p>$ 105,000</p>
+                <p>CHF 101,305.96</p>
               </div>
               <div className='uppercase font-semibold flex justify-between items-center mb-2'>
                 <h5>tax(5%)</h5>
@@ -110,14 +110,14 @@ const page = () => {
               </div>
               <div className='uppercase font-semibold flex justify-between items-center mb-2'>
                 <h5>amount in usd</h5>
-                <p>$ 105,000</p>
+                <p>$ 244,297.07</p>
               </div>
               <div className='uppercase font-semibold flex justify-between items-center mb-2'>
                 <h5>amount in chf</h5>
-                <p>$ 105,000</p>
+                <p>CHF 222,240.42</p>
               </div>
               <div className='uppercase font-semibold flex justify-between items-center mb-2'>
-                <h5>tax(5%)</h5>
+                <h5>tax(15%)</h5>
                 <span className='text-sm flex gap-x-2 bg-yellow-100 px-2 py-1 rounded-full items-center w-fit font-medium'><AlarmCheck size={12} />Pending</span>
               </div>
             </div>
