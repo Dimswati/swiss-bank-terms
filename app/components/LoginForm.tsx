@@ -19,7 +19,7 @@ const LoginForm = () => {
   const token = "n7gcDhrZeabCKjZhgrVJLZV8g"
 
   const router = useRouter()
-  const [ error, setError ] = useState<string>()
+  const [error, setError] = useState<string>()
 
   const { handleSubmit, register, formState: { errors } } = useForm<FormProps>()
 
@@ -39,7 +39,6 @@ const LoginForm = () => {
       <label htmlFor="" className="mb-4">
         <span className='block mb-2 uppercase font-medium'>username</span>
         <input type="text" {...register("username", { required: "username required" })} className='w-full h-10 border-2 border-neutral-200 outline-none focus-visible:outline-none pl-4' />
-        {/* { Boolean(errors.authtoken?.message) && <span>{errors.username?.message}</span> } */}
       </label>
       <label htmlFor="" className="mb-4">
         <span className='block mb-2 uppercase font-medium'>authentication token</span>
