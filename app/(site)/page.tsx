@@ -47,7 +47,7 @@ const page = () => {
         <div className='border border-neutral-200 rounded-md p-4 mb-4'>
           <div className='flex w-full divide-x divide-neutral-200 pb-4 border-b border-neutral-200'>
             <div className='md:w-9/12 md:basis-9/12 w-8/12 basis-8/12'>
-              <h5 className='font-semibold'>Re-reimbursement fee</h5>
+              <h5 className='font-semibold'>Re-embursment fee</h5>
               <p>Website should show auto generate receipt showing payment confirmation of all previous payments</p>
             </div>
             <div className='md:w-3/12 md:basis-3/12 w-4/12 basis-4/12 pl-3'>
@@ -134,7 +134,7 @@ const page = () => {
               </div>
               <div className='uppercase font-semibold flex justify-between items-center mb-2'>
                 <h5>tax(0%)</h5>
-                <span className='text-sm flex gap-x-2 bg-yellow-100 px-2 py-1 rounded-full items-center w-fit font-medium'><AlarmCheck size={12} />Pending</span>
+                <span className='text-sm flex gap-x-2 bg-green-100 px-2 py-1 rounded-full items-center w-fit font-medium'><CheckCheck size={12} className='' />cleared</span>
               </div>
             </div>
           </div>
