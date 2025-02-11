@@ -7,7 +7,7 @@ const Footer = () => {
                 <section className='container max-w-screen-lg flex justify-between md:flex-row flex-col gap-y-6'>
                     <div>
                         <h3 className='text-white font-semibold mb-4'>Postal address & contact</h3>
-                        <p className='mb-3 block'>Swiss Bank Coop <br />
+                        <p className='mb-3 block'>Swiss Bank Co-op <br />
                             Börsenstrasse 39 <br />
                             P. O. Box <br />
                             CH-8027 Zurich</p>

@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Swiss Bank Cooperation",
-  description: "Swiss Bank Cooperation terms and conditions",
+  description: "Swiss Bank Cooperation",
 };
 
 export default function RootLayout({
