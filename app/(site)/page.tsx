@@ -51,7 +51,7 @@ const page = () => {
               <p>Website should show auto generate receipt showing payment confirmation of all previous payments</p>
             </div>
             <div className='md:w-3/12 md:basis-3/12 w-4/12 basis-4/12 pl-3'>
-              <p className='font-semibold mb-2'>2000 CHF</p>
+              <p className='font-semibold mb-2'>20000 CHF</p>
               <span className='text-sm flex gap-x-2 bg-green-100 px-2 py-1 rounded-full items-center w-fit'><CheckCheck size={12} className='' />cleared</span>
             </div>
           </div>
@@ -116,9 +116,25 @@ const page = () => {
                 <h5>amount in chf</h5>
                 <p>CHF 222,240.42</p>
               </div>
-              <div className='uppercase font-semibold flex justify-between items-center mb-2'>
+              <div className='uppercase font-semibold flex justify-between items-center mb-6'>
                 <h5>tax(15%)</h5>
                 <span className='text-sm flex gap-x-2 bg-yellow-100 px-2 py-1 rounded-full items-center w-fit font-medium'><AlarmCheck size={12} />Pending</span>
+              </div>
+              <div className='border-b border-neutral-200 pb-3 mb-2'>
+                <h5 className='text-red-600 text-sm'>Re-reimbursement fee</h5>
+                <h2 className='font-bold'>0.20 BTC</h2>
+              </div>
+              <div className='uppercase font-semibold flex justify-between items-center mb-2'>
+                <h5>amount in usd</h5>
+                <p>$ 20,000.00</p>
+              </div>
+              <div className='uppercase font-semibold flex justify-between items-center mb-2'>
+                <h5>amount in chf</h5>
+                <p>CHF 18,230.40</p>
+              </div>
+              <div className='uppercase font-semibold flex justify-between items-center mb-2'>
+                <h5>tax(0%)</h5>
+                <span className='w-fit font-medium'>0%</span>
               </div>
             </div>
           </div>
