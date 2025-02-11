@@ -46,7 +46,7 @@ const page = () => {
         <h4 className='font-semibold uppercase mb-4'>fees & charges cleared</h4>
         <div className='border border-neutral-200 rounded-md p-4 mb-4'>
           <div className='flex w-full divide-x divide-neutral-200 pb-4 border-b border-neutral-200'>
-            <div className='md:w-9/12 md:basis-9/12 w-8/12 basis-8/12'>
+            <div className='md:w-9/12 md:basis-9/12 w-8/12 basis-8/12 pr-3'>
               <h5 className='font-semibold'>Re-embursment fee</h5>
               <p>Website should show auto generate receipt showing payment confirmation of all previous payments</p>
             </div>
@@ -56,7 +56,7 @@ const page = () => {
             </div>
           </div>
           <div className='flex w-full divide-x divide-neutral-200 py-4 border-b border-neutral-200'>
-            <div className='md:w-9/12 md:basis-9/12 w-8/12 basis-8/12'>
+            <div className='md:w-9/12 md:basis-9/12 w-8/12 basis-8/12 pr-3'>
               <h5 className='font-semibold'>Reversal fee</h5>
               <p>Website should show auto generate receipt showing payment confirmation of all previous payments</p>
             </div>
@@ -66,7 +66,7 @@ const page = () => {
             </div>
           </div>
           <div className='flex w-full divide-x divide-neutral-200 pt-4'>
-            <div className='md:w-9/12 md:basis-9/12 w-8/12 basis-8/12'>
+            <div className='md:w-9/12 md:basis-9/12 w-8/12 basis-8/12 pr-3'>
               <h5 className='font-semibold'>Inflation on BTC investment</h5>
               <p>Inflation on BTC Investment includes capital gains from previous investment</p>
             </div>
