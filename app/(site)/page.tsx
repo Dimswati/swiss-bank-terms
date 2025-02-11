@@ -23,11 +23,11 @@ const page = () => {
           <div className='flex sm:flex-col flex-row w-full uppercase text-sm gap-y-4'>
             <div className='sm:w-full sm:basis-1/2 w-1/2 basis-1/2'>
               <h5 className='text-neutral-500 mb-1'>mobile number</h5>
-              <p className='font-bold'>+33 8908 1200</p>
+              <p className='font-bold'>+1 703 628 6515</p>
             </div>
             <div className='sm:w-full sm:basis-1/2 w-1/2 basis-1/2'>
               <h5 className='text-neutral-500 mb-1'>verified email address</h5>
-              <p className='font-bold break-words'>johnsoliday@gmail.com</p>
+              <p className='font-bold break-words'>jsoliday98@gmail.com</p>
             </div>
           </div>
           <div className='flex sm:flex-col flex-row w-full uppercase text-sm gap-y-4'>
@@ -37,7 +37,7 @@ const page = () => {
             </div>
             <div className='sm:w-full sm:basis-1/2 w-1/2 basis-1/2'>
               <h5 className='text-neutral-500 mb-1'>postal code</h5>
-              <p className='font-bold'>809344</p>
+              <p className='font-bold'>22192</p>
             </div>
           </div>
         </div>
