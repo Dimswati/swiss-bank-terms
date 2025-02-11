@@ -40,7 +40,7 @@ const VerifyAddressForm = () => {
 
     return (
         <div className='bg-neutral-200 p-4 rounded-md'>
-            <h4 className='font-semibold uppercase mb-4'>receipt btc address</h4>
+            <h4 className='font-semibold uppercase mb-4'>recipient btc address</h4>
             <form action="" onSubmit={handleSubmit(onSubmit)} className='flex md:flex-row flex-col justify-between gap-y-4 gap-x-4'>
                 <div className='w-full'>
                     <div className={twMerge('w-full bg-white break-words px-3 py-2 rounded-md border border-red-600 mb-3', Boolean(verifiedAddress) && "border-green-600")}>{Boolean(verifiedAddress) ? verifiedAddress : <>392NQstZKRCHBGNR4nNR7PRhQtXS5xRKAV</>}</div>
