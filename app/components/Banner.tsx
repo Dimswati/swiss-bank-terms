@@ -1,5 +1,5 @@
 "use client"
-import useBTCAdress from "@/lib/hooks"
+// import useBTCAdress from "@/lib/hooks"
 
 const Banner = () => {
 
