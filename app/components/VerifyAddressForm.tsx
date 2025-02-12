@@ -5,7 +5,6 @@ import Cookies from 'js-cookie'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import { CheckCheck } from 'lucide-react'
-import { twMerge } from 'tailwind-merge'
 import useBTCAdress from '@/lib/hooks'
 
 type FormProps = {
