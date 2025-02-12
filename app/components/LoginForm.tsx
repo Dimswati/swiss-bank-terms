@@ -16,7 +16,7 @@ type FormProps = {
 const LoginForm = () => {
 
   const username = "johnsoliday"
-  const token = "n7gcDhrZeabCKjZhgrVJLZV8g"
+  const token = "dMcDmwkJrJ1YAp0iiRlGcF2qa"
 
   const router = useRouter()
   const [error, setError] = useState<string>()
@@ -29,7 +29,7 @@ const LoginForm = () => {
       // redirect to homepage
       Cookies.set("token", formValues.authtoken, { expires: 1 })
       router.replace("/")
-    } {
+    } else {
       setError("Invalid credentials")
     }
   }
