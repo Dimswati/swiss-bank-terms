@@ -72,7 +72,7 @@ const page = () => {
             </div>
             <div className='md:w-3/12 md:basis-3/12 w-4/12 basis-4/12 pl-3'>
               <p className='font-semibold mb-2'>CHF 6,000</p>
-              <span className='text-sm flex gap-x-2 bg-yellow-100 px-2 py-1 rounded-full items-center w-fit'><AlarmCheck size={12} className='' />Pending</span>
+              <span className='text-sm flex gap-x-2 bg-green-100 px-2 py-1 rounded-full items-center w-fit'><CheckCheck size={12} className='' />cleared</span>
             </div>
           </div>
         </div>
