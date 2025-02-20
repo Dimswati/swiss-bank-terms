@@ -1,4 +1,4 @@
-import { AlarmCheck, CheckCheck } from 'lucide-react'
+import { CheckCheck } from 'lucide-react'
 import React from 'react'
 import VerifyAddressForm from '../components/VerifyAddressForm'
 import Banner from '../components/Banner'
