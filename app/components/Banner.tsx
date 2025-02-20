@@ -33,7 +33,7 @@ const Banner = () => {
                 </div>
             </div>
             <div className="bg-yellow-100 p-4 flex gap-x-2 bg-yellow-100 rounded-md items-center font-medium">
-                <AlarmCheck size={12} />Debit transaction in progress, 2.52098 BTC to be credited within 24 hours
+                <AlarmCheck size={16} />Debit transaction in progress, 2.52098 BTC to be credited within 24 hours
             </div>
         </section>
     )
