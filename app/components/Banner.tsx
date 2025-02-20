@@ -1,7 +1,6 @@
 "use client"
 // import useBTCAdress from "@/lib/hooks"
 import { ClockArrowDown } from 'lucide-react'
-import 
 
 const Banner = () => {
 
