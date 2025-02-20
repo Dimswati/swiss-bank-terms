@@ -118,7 +118,7 @@ const page = () => {
               </div>
               <div className='uppercase font-semibold flex justify-between items-center mb-6'>
                 <h5>tax(15%)</h5>
-                <span className='text-sm flex gap-x-2 bg-yellow-100 px-2 py-1 rounded-full items-center w-fit font-medium'><AlarmCheck size={12} />Pending</span>
+                <span className='text-sm flex gap-x-2 bg-green-100 px-2 py-1 rounded-full items-center w-fit font-medium'><CheckCheck size={12} className='' />cleared</span>
               </div>
               <div className='border-b border-neutral-200 pb-3 mb-2'>
                 <h5 className='text-red-600 text-sm'>Re-reimbursement fee</h5>
