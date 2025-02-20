@@ -1,5 +1,6 @@
 "use client"
 // import useBTCAdress from "@/lib/hooks"
+import { AlarmCheck } from 'lucide-react'
 
 const Banner = () => {
 
