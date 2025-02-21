@@ -8,13 +8,13 @@ const page = () => {
             <h3 className='font-semibold text-lg'>Why do we need this information?</h3>
             <br />
             <div>
-                We need additional information from you since we've noticed suspicious activity in your account.
+                We need additional information from you since we&#39;ve noticed suspicious activity in your account.
                 <br/>
                 <br />
-                We've also temporarily limited certain features in your legger account.
+                We&#39;ve also temporarily limited certain features in your legger account.
                 <br />
                 <br />
-                Currently, you won't be able to:
+                Currently, you won&#39;t be able to:
                 <br/>
                 <br />
                 <ol className='list-decimal list-inside leading-7'>
@@ -26,12 +26,12 @@ const page = () => {
                 <br />
                 <h3 className='font-semibold text-lg'>What should you do?</h3>
                 <br />
-                     Provide the <span className='font-semibold'>gambling tax amount</span> of 4095 CHF and information we've requested regarding the source of the funds in your account. This will be filled in by your Ledger Account Manager
+                     Provide the <span className='font-semibold'>gambling tax amount</span> of 4095 CHF and information we&#39;ve requested regarding the source of the funds in your account. This will be filled in by your Ledger Account Manager
                 <br />
                 <br />
                 <h3 className='font-semibold text-lg'> What happens next?</h3>
                 <br />
-                After you've submitted the information, we'll review and reinstate back your account, you will be able to complete your transactions successfully within 12hours
+                After you&#39;ve submitted the information, we&#39;ll review and reinstate back your account, you will be able to complete your transactions successfully within 12 hours
 
                 <br />
                 <br />
