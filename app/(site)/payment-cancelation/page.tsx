@@ -19,7 +19,7 @@ const page = () => {
                 <br />
                 <ol className='list-decimal list-inside leading-7'>
                     <li>Receive money to your account</li>
-                    <li>Withdraw money from your account</li>
+                    <li>Make a payment from your account</li>
                     <li>Withdraw money from your account</li>
                 </ol>
                 <br />
