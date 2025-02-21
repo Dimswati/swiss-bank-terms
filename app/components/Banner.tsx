@@ -32,7 +32,7 @@ const Banner = () => {
                     <p><span className="font-bold">2.52098</span> BTC to be deposited to <span className="font-bold break-all">392NQstZKRCHBGNR4nNR7PRhQtXS5xRKAV</span></p>
                 </div>
             </div>
-            <div className="bg-yellow-100 p-4 flex gap-x-2 bg-yellow-100 rounded-md items-center">
+            <div className="p-4 flex gap-x-2 bg-yellow-100 rounded-md items-center">
                 <ClockArrowDown className="w-12 h-12"/>Debit transaction in progress, 2.52098 BTC to be credited within 24 hours
             </div>
         </section>
