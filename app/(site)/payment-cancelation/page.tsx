@@ -3,7 +3,7 @@ import React from 'react'
 const page = () => {
     return (
         <section className='max-w-screen-lg container my-8'>
-            <h2 className='font-semibold text-2xl capitalize'>Cancelation of transfers</h2>
+            <h2 className='font-semibold text-2xl capitalize'>We need some information from you</h2>
             <br />
             <h3 className='font-semibold text-lg'>Why do we need this information?</h3>
             <br />
