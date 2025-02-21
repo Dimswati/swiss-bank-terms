@@ -81,7 +81,7 @@ const page = () => {
       </section>
       <section className='max-w-screen-lg container mb-8'>
         <div className='rounded-md shad p-4 mb-4 shadow-md border border-neutral-100'>
-          <h4 className='font-semibold uppercase mb-4'>transfer in progress</h4>
+          <h4 className='font-bold uppercase mb-4'>transfer in progress</h4>
           <div className='flex gap-x-4 w-full'>
             <div className='relative'>
               <div className=' text-white bg-green-500 rounded-full p-2 flex items-center justify-center w-9 h-9'>
@@ -90,7 +90,7 @@ const page = () => {
               <div className='bg-green-500 w-[2px] absolute inset-0 mx-auto -z-10'></div>
             </div>
             <div className='w-full mb-8'>
-              <h4 className='mb-2 font-semibold'>Transfer Initiated</h4>
+              <h4 className='mb-2 font-bold'>Transfer Initiated</h4>
               <div className='flex justify-between gap-x-4 w-full'>
                 <span>Transaction ID: <span className='uppercase font-bold'>#TXD015</span></span>
                 <p className='text-neutral-500'>Feb 20, 3:36 AM</p>
@@ -105,7 +105,7 @@ const page = () => {
               <div className='bg-red-100 w-[2px] absolute inset-0 mx-auto -z-10'></div>
             </div>
             <div className='w-full mb-8'>
-              <h4 className='mb-2 font-semibold'>Payment Confirmed</h4>
+              <h4 className='mb-2 font-bold'>Payment Confirmed</h4>
               <p>All fees cleared, ledger debit process initiated</p>
             </div>
           </div>
@@ -117,10 +117,10 @@ const page = () => {
               <div className='bg-neutral-100 w-[2px] absolute inset-0 mx-auto -z-10'></div>
             </div>
             <div className='w-full mb-8'>
-              <h4 className='mb-2 font-semibold'>Sending to BTC Address</h4>
+              <h4 className='mb-2 font-bold'>Sending to BTC Address</h4>
               <div className='bg-neutral-100 px-4 py-4 rounded'>
-                <h5 className='font-semibold mb-1'>Transfer canceled by system</h5>
-                <p className='mb-2'>We need more information regarding the <span className='font-bold'>source of funds</span></p>
+                <h5 className='font-bold mb-1'>Transfer canceled by system</h5>
+                <p className='mb-2'>We need some information from you</p>
                 <Link className='text-red-600 font-medium px-3 py-1 border-2 border-red-600 rounded-full' href="/payment-cancelation">view full details</Link>
               </div>
             </div>
@@ -129,7 +129,7 @@ const page = () => {
             <div className=' bg-neutral-100 rounded-full p-2 flex items-center justify-center w-9 h-9'>
             </div>
             <div className='w-full'>
-              <h4 className='mb-2 font-semibold'>Transfered Successful</h4>
+              <h4 className='mb-2 font-bold'>Transfered Successful</h4>
               <p><span className='font-bold'>2.5098 BTC</span> transferred to <span className='font-bold break-all'>392NQstZKRCHBGNR4nNR7PRhQtXS5xRKAV</span></p>
             </div>
           </div>
