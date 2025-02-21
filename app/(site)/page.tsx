@@ -81,7 +81,7 @@ const page = () => {
       </section>
       <section className='max-w-screen-lg container mb-8'>
         <div className='rounded-md shad p-4 mb-4 shadow-md border border-neutral-100'>
-          <h4 className='font-semibold uppercase mb-4'>transfer in process</h4>
+          <h4 className='font-semibold uppercase mb-4'>transfer in progress</h4>
           <div className='flex gap-x-4 w-full'>
             <div className='relative'>
               <div className=' text-white bg-green-500 rounded-full p-2 flex items-center justify-center w-9 h-9'>

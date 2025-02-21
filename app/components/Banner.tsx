@@ -33,7 +33,7 @@ const Banner = () => {
                 </div>
             </div>
             <div className="p-4 bg-red-100 rounded-md items-center">
-                <p className='mb-3'>We need more information regarding the <span className='font-bold'>source of funds</span></p>
+                <p className='mb-3'>We need some information from you</p>
                 <Link className='text-red-600 font-medium px-3 py-1 border-2 border-red-600 rounded-full' href="/payment-cancelation">view full details</Link>
             </div>
         </section>

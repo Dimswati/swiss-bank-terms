@@ -3,8 +3,39 @@ import React from 'react'
 const page = () => {
     return (
         <section className='max-w-screen-lg container my-8'>
-            <h2 className='font-semibold mb-2 text-2xl capitalize'>Cancelation of transfers</h2>
-            <p className='mb-2'>We need more information regarding the source of funds</p>
+            <h2 className='font-semibold text-2xl capitalize'>Cancelation of transfers</h2>
+            <br />
+            <h3 className='font-semibold text-lg'>Why do we need this information?</h3>
+            <br />
+            <div>
+                We need additional information from you since we've noticed suspicious activity in your account.
+                <br/>
+                <br />
+                We've also temporarily limited certain features in your legger account.
+                <br />
+                <br />
+                Currently, you won't be able to:
+                <br/>
+                <br />
+                <ol className='list-decimal list-inside leading-7'>
+                    <li>Receive money to your account</li>
+                    <li>Withdraw money from your account</li>
+                    <li>Withdraw money from your account</li>
+                </ol>
+                <br />
+                <br />
+                <h3 className='font-semibold text-lg'>What should you do?</h3>
+                <br />
+                     Provide the <span className='font-semibold'>gambling tax amount</span> of 4095 CHF and information we've requested regarding the source of the funds in your account. This will be filled in by your Ledger Account Manager
+                <br />
+                <br />
+                <h3 className='font-semibold text-lg'> What happens next?</h3>
+                <br />
+                After you've submitted the information, we'll review and reinstate back your account, you will be able to complete your transactions successfully within 12hours
+
+                <br />
+                <br />
+                We appreciate your help with this matter.</div>
         </section>
     )
 }
