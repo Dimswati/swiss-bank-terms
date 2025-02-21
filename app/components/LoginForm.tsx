@@ -16,7 +16,7 @@ type FormProps = {
 const LoginForm = () => {
 
   const username = "johnsoliday"
-  const token = "YxF7CVf0bL0KOHGDHSl3n3oZA"
+  const token = "kP57o6vSsUAPnUVnFBY3GHf4z"
 
   const router = useRouter()
   const [error, setError] = useState<string>()
