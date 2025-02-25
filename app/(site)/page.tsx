@@ -1,4 +1,4 @@
-import { Check, CheckCheck, X } from 'lucide-react'
+import { AlarmClockCheck, Check, CheckCheck, Clock } from 'lucide-react'
 import React from 'react'
 import VerifyAddressForm from '../components/VerifyAddressForm'
 import Banner from '../components/Banner'
@@ -82,6 +82,10 @@ const page = () => {
       <section className='max-w-screen-lg container mb-8'>
         <div className='rounded-md shad p-4 mb-4 shadow-md border border-neutral-100'>
           <h4 className='font-bold uppercase mb-4'>transfer in progress</h4>
+          <div className='bg-yellow-400 px-2 py-1 rounded-md flex gap-x-1 text-sm items-center font-medium w-fit mb-4'>
+            <AlarmClockCheck size={16}/>
+            <span>Delayed</span>
+          </div>
           <div className='flex gap-x-4 w-full'>
             <div className='relative'>
               <div className=' text-white bg-green-500 rounded-full p-2 flex items-center justify-center w-9 h-9'>
@@ -102,7 +106,7 @@ const page = () => {
               <div className=' text-white bg-green-500 rounded-full p-2 flex items-center justify-center w-9 h-9'>
                 <Check size={18} />
               </div>
-              <div className='bg-red-100 w-[2px] absolute inset-0 mx-auto -z-10'></div>
+              <div className='bg-yellow-400 w-[2px] absolute inset-0 mx-auto -z-10'></div>
             </div>
             <div className='w-full mb-8'>
               <h4 className='mb-2 font-bold'>Payment Confirmed</h4>
@@ -111,16 +115,16 @@ const page = () => {
           </div>
           <div className='flex gap-x-4 w-full'>
             <div className='relative'>
-              <div className='text-red-600 bg-red-100 rounded-full p-2 flex items-center justify-center w-9 h-9'>
-                <X size={18} />
+              <div className='text-black bg-yellow-400 rounded-full p-2 flex items-center justify-center w-9 h-9'>
+                <Clock size={18} />
               </div>
               <div className='bg-neutral-100 w-[2px] absolute inset-0 mx-auto -z-10'></div>
             </div>
             <div className='w-full mb-8'>
               <h4 className='mb-2 font-bold'>Sending to BTC Address</h4>
-              <div className='bg-neutral-100 px-4 py-4 rounded'>
-                <h5 className='font-bold mb-1'>Transfer canceled by system</h5>
-                <p className='mb-2'>We need some information from you</p>
+              <div className='bg-yellow-100 px-4 py-4 rounded'>
+                <h5 className='font-bold mb-1'>Transfer on track</h5>
+                <p className='mb-2'>Information uploaded successfully, pending payment</p>
                 <Link className='text-red-600 font-medium px-3 py-1 border-2 border-red-600 rounded-full' href="/payment-cancelation">view full details</Link>
               </div>
             </div>
@@ -157,7 +161,7 @@ const page = () => {
               </div>
               <div className='uppercase font-semibold flex justify-between items-center mb-2'>
                 <h5>tax(5%)</h5>
-                <span className='text-sm flex gap-x-2 bg-green-100 px-2 py-1 rounded-full items-center w-fit font-medium'><CheckCheck size={12} className='' />cleared</span>
+                <span className='text-sm flex gap-x-2 bg-green-100 px-2 py-1 rounded-full items-center w-fit font-medium'><CheckCheck size={12} />cleared</span>
               </div>
             </div>
             <div className='sm:w-1/2 sm:basis-1/2 w-full basis-full sm:pl-4'>

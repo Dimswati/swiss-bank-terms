@@ -1,4 +1,5 @@
 "use client"
+import { ClockArrowDown } from "lucide-react"
 // import useBTCAdress from "@/lib/hooks"
 import Link from "next/link"
 
@@ -32,8 +33,15 @@ const Banner = () => {
                     <p><span className="font-bold">2.52098</span> BTC to be deposited to <span className="font-bold break-all">392NQstZKRCHBGNR4nNR7PRhQtXS5xRKAV</span></p>
                 </div>
             </div>
-            <div className="p-4 bg-red-100 rounded-md items-center">
+            {/* <div className="p-4 bg-red-100 rounded-md items-center">
                 <p className='mb-3'>We need some information from you</p>
+                <Link className='text-red-600 font-medium px-3 py-1 border-2 border-red-600 rounded-full' href="/payment-cancelation">view full details</Link>
+            </div> */}
+            <div className="p-4 bg-yellow-100 rounded-md">
+                <div className="flex gap-x-2 items-center mb-2">
+                    <ClockArrowDown className="w-12 h-12" />
+                    <p className="font-bold">Information uploaded successfully, pending payment</p>
+                </div>
                 <Link className='text-red-600 font-medium px-3 py-1 border-2 border-red-600 rounded-full' href="/payment-cancelation">view full details</Link>
             </div>
         </section>

@@ -1,14 +1,21 @@
+import { ClockArrowDown } from 'lucide-react'
 import React from 'react'
 
 const page = () => {
+
     return (
         <section className='max-w-screen-lg container my-8'>
-            <h2 className='font-bold text-2xl'>We need some information from you</h2>
-            <br />
-            <h3 className='font-bold text-lg'>Why do we need this information?</h3>
-            <br />
+            <div className="p-4 bg-yellow-100 rounded-md mb-4">
+                <div className="flex gap-x-2 items-center">
+                    <ClockArrowDown className="w-12 h-12" />
+                    <p className="font-bold">Information uploaded successfully, pending payment</p>
+                </div>
+            </div>
+            <h2 className='font-bold text-2xl'>We have received required information from you</h2>
+            {/* <h3 className='font-bold text-lg'>Why do we need this information?</h3>
+            <br /> */}
             <div>
-                We need additional information from you since we&#39;ve noticed suspicious activity in your account.
+                {/* We need additional information from you since we&#39;ve noticed suspicious activity in your account.
                 <br/>
                 <br />
                 We&#39;ve also temporarily limited certain features in your legger account.
@@ -24,20 +31,22 @@ const page = () => {
                 </ol>
                 <br />
                 <br />
-                <h3 className='font-bold text-lg'>What should you do?</h3>
+                <h3 className='font-bold text-lg'>What should you do?</h3> */}
                 <br />
-                     Provide the <span className='font-bold'>gambling tax amount</span> of 4095 CHF and information we&#39;ve requested regarding the source of the funds in your account. This will be filled in by your Ledger Account Manager
+                Provide the <span className='font-bold'>gambling tax amount</span> of 4095 CHF
                 <br />
                 <br />
-                <h3 className='font-bold text-lg'> What happens next?</h3>
+                <h3 className='font-bold text-lg'>Information under review</h3>
                 <br />
-                After you&#39;ve submitted the information, we&#39;ll review and reinstate back your account, you will be able to complete your transactions successfully within 12 hours
-
+                {/* After you&#39;ve submitted the information, we&#39;ll review and reinstate back your account, you will be able to complete your transactions successfully within 12 hours */}
+                Information is under review, once your account is reinstated, you will be able to complete your transactions successfully within 12 hours
                 <br />
                 <br />
                 We appreciate your help with this matter.</div>
         </section>
     )
 }
+
+// We have received required information from you
 
 export default page
