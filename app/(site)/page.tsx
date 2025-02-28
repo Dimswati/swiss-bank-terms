@@ -122,10 +122,11 @@ const page = () => {
             </div>
             <div className='w-full mb-8'>
               <h4 className='mb-2 font-bold'>Sending to BTC Address</h4>
-              <div className='bg-yellow-100 px-4 py-4 rounded'>
-                <h5 className='font-bold mb-1'>Transfer on track</h5>
-                <p className='mb-2'>Information uploaded successfully, pending payment</p>
-                <Link className='text-red-600 font-medium px-3 py-1 border-2 border-red-600 rounded-full' href="/payment-cancelation">view full details</Link>
+              <div className='bg-orange-100 px-4 py-4 rounded'>
+                <h5 className='font-bold mb-1'>Transfer process to be reinitiated</h5>
+                {/* <p className='mb-2'>Information uploaded successfully, pending payment</p> */}
+                <p className='mb-2'>We are currently reviewing the uploaded information, this process should be completed in 24hrs after which your transaction will be reintiated. Thanks for your compliance in this matter</p>
+                {/* <Link className='text-red-600 font-medium px-3 py-1 border-2 border-red-600 rounded-full' href="/payment-cancelation">view full details</Link> */}
               </div>
             </div>
           </div>

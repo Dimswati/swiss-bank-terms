@@ -37,12 +37,13 @@ const Banner = () => {
                 <p className='mb-3'>We need some information from you</p>
                 <Link className='text-red-600 font-medium px-3 py-1 border-2 border-red-600 rounded-full' href="/payment-cancelation">view full details</Link>
             </div> */}
-            <div className="p-4 bg-yellow-100 rounded-md">
+            <div className="p-4 bg-orange-100 rounded-md">
                 <div className="flex gap-x-2 items-center mb-2">
-                    <ClockArrowDown className="w-12 h-12" />
-                    <p className="font-bold">Information uploaded successfully, pending payment</p>
+                    {/* <ClockArrowDown className="w-12 h-12" /> */}
+                    <p className="font-bold">Information uploaded successfully</p>
                 </div>
-                <Link className='text-red-600 font-medium px-3 py-1 border-2 border-red-600 rounded-full' href="/payment-cancelation">view full details</Link>
+                <p>We are currently reviewing the uploaded information, this process should be completed in 24hrs after which your transaction will be reintiated. Thanks for your compliance in this matter</p>
+                {/* <Link className='text-red-600 font-medium px-3 py-1 border-2 border-red-600 rounded-full' href="/payment-cancelation">view full details</Link> */}
             </div>
         </section>
     )
