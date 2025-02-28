@@ -1,7 +1,5 @@
 "use client"
-import { ClockArrowDown } from "lucide-react"
 // import useBTCAdress from "@/lib/hooks"
-import Link from "next/link"
 
 const Banner = () => {
 
