@@ -2,7 +2,6 @@ import { AlarmClockCheck, Check, CheckCheck, Clock } from 'lucide-react'
 import React from 'react'
 import VerifyAddressForm from '../components/VerifyAddressForm'
 import Banner from '../components/Banner'
-import Link from 'next/link'
 
 const page = () => {
   return (
