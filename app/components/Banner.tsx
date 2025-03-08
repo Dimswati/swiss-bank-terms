@@ -53,7 +53,7 @@ const Banner = () => {
                         {/* <ClockArrowDown className="w-12 h-12" /> */}
                         <p className="font-bold">Awaiting your review</p>
                     </div>
-                    <p className="mb-4">We highly appreciate your compliance in apploading required information. As we are currently reviewing your submitted documentation, we ask you to review and acknowledge as per our client verification process</p>
+                    <p className="mb-4">We highly appreciate your compliance in uploading required information. As we are currently reviewing your submitted documentation, we ask you to review and acknowledge as per our client verification process procedure</p>
 
                     <Link className='text-green-600 font-medium px-3 py-1 border-2 border-green-600 rounded-full' href="/client-verification">review and acknowledge</Link>
                 </div>
