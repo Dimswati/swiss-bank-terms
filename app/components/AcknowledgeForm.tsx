@@ -11,7 +11,7 @@ type AcknowledgeForm = {
 const AcknowledgeForm = () => {
 
   // fees cleared - false | true
-  const feeCleared = true
+  const feeCleared = false
 
   const router = useRouter()
   const [acknowledge, setAcknowledge] = useState(false)
