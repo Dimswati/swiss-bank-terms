@@ -64,7 +64,7 @@ const TransferProcess = () => {
                         <h5 className='font-bold mb-1'>{acknowledge ? "Transfer Reinitiation Process Ongoing" : "Awaiting Your Review"}</h5>
                         {/* <p className='mb-2'>Information uploaded successfully, pending payment</p> */}
                         <p className='mb-2'>{acknowledge ? "We thank your for compliance to our client verification process" : "We highly appreciate your compliance in apploading required information. As we are currently reviewing your submitted documentation, we ask you to review and acknowledge as per our client verification process"}</p>
-                        {!acknowledge && <Link className='text-green-600 text-sm font-medium px-3 py-1 border-2 border-green-600 rounded-full' href="/payment-cancelation">review and acknowledge</Link>}
+                        {!acknowledge && <Link className='text-green-600 text-sm font-medium px-3 py-1 border-2 border-green-600 rounded-full' href="/client-verification">review and acknowledge</Link>}
                     </div>
                 </div>
             </div>
