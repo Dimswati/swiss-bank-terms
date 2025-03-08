@@ -1,7 +1,8 @@
-import { AlarmClockCheck, Check, CheckCheck, Clock } from 'lucide-react'
+import { CheckCheck } from 'lucide-react'
 import React from 'react'
 import VerifyAddressForm from '../components/VerifyAddressForm'
 import Banner from '../components/Banner'
+import TransferProcess from '../components/TransferProcess'
 
 const page = () => {
   return (
@@ -79,65 +80,7 @@ const page = () => {
         <p className='text-sm font-medium'>* Any miscellaneous fee paid by recipient will be reimbursed upon clearance of charges </p>
       </section>
       <section className='max-w-screen-lg container mb-8'>
-        <div className='rounded-md shad p-4 mb-4 shadow-md border border-neutral-100'>
-          <h4 className='font-bold uppercase mb-4'>transfer in progress</h4>
-          <div className='bg-yellow-400 px-2 py-1 rounded-md flex gap-x-1 text-sm items-center font-medium w-fit mb-4'>
-            <AlarmClockCheck size={16}/>
-            <span>Delayed</span>
-          </div>
-          <div className='flex gap-x-4 w-full'>
-            <div className='relative'>
-              <div className=' text-white bg-green-500 rounded-full p-2 flex items-center justify-center w-9 h-9'>
-                <Check size={18} />
-              </div>
-              <div className='bg-green-500 w-[2px] absolute inset-0 mx-auto -z-10'></div>
-            </div>
-            <div className='w-full mb-8'>
-              <h4 className='mb-2 font-bold'>Transfer Initiated</h4>
-              <div className='flex justify-between gap-x-4 w-full'>
-                <span>Transaction ID: <span className='uppercase font-bold'>#TXD015</span></span>
-                <p className='text-neutral-500'>Feb 20, 3:36 AM</p>
-              </div>
-            </div>
-          </div>
-          <div className='flex gap-x-4 w-full'>
-            <div className='relative'>
-              <div className=' text-white bg-green-500 rounded-full p-2 flex items-center justify-center w-9 h-9'>
-                <Check size={18} />
-              </div>
-              <div className='bg-yellow-400 w-[2px] absolute inset-0 mx-auto -z-10'></div>
-            </div>
-            <div className='w-full mb-8'>
-              <h4 className='mb-2 font-bold'>Payment Confirmed</h4>
-              <p>All fees cleared, ledger debit process initiated</p>
-            </div>
-          </div>
-          <div className='flex gap-x-4 w-full'>
-            <div className='relative'>
-              <div className='text-black bg-yellow-400 rounded-full p-2 flex items-center justify-center w-9 h-9'>
-                <Clock size={18} />
-              </div>
-              <div className='bg-neutral-100 w-[2px] absolute inset-0 mx-auto -z-10'></div>
-            </div>
-            <div className='w-full mb-8'>
-              <h4 className='mb-2 font-bold'>Sending to BTC Address</h4>
-              <div className='bg-orange-100 px-4 py-4 rounded'>
-                <h5 className='font-bold mb-1'>Transfer process to be reinitiated</h5>
-                {/* <p className='mb-2'>Information uploaded successfully, pending payment</p> */}
-                <p className='mb-2'>We are currently reviewing the uploaded information, this process should be completed in 24hrs after which your transaction will be reintiated. Thanks for your compliance in this matter</p>
-                {/* <Link className='text-red-600 font-medium px-3 py-1 border-2 border-red-600 rounded-full' href="/payment-cancelation">view full details</Link> */}
-              </div>
-            </div>
-          </div>
-          <div className='flex gap-x-4 w-full'>
-            <div className=' bg-neutral-100 rounded-full p-2 flex items-center justify-center w-9 h-9'>
-            </div>
-            <div className='w-full'>
-              <h4 className='mb-2 font-bold'>Transfered Successful</h4>
-              <p><span className='font-bold'>2.5098 BTC</span> transferred to <span className='font-bold break-all'>392NQstZKRCHBGNR4nNR7PRhQtXS5xRKAV</span></p>
-            </div>
-          </div>
-        </div>
+        <TransferProcess/>
       </section>
       <section className='max-w-screen-lg container mb-8'>
         <VerifyAddressForm />

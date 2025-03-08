@@ -1,16 +1,19 @@
 "use client"
+import Link from "next/link"
+import { useEffect, useState } from "react"
+import Cookies from "js-cookie"
 // import useBTCAdress from "@/lib/hooks"
 
 const Banner = () => {
 
-    // const [verifiedAddress, setVerifiedAddress] = useState<string>()
+    const [acknowledge, setAcknowledge] = useState<boolean>(false)
 
-    // useEffect(() => {
-    //     const btcaddress = Cookies.get("btcaddress")
-    //     if(btcaddress) {
-    //         setVerifiedAddress(btcaddress)
-    //     }
-    // }, [])
+    useEffect(() => {
+        const acknowledge = Cookies.get("acknowledge")
+        if (acknowledge) {
+            setAcknowledge(true)
+        }
+    }, [])
 
     // const { verifiedAddress } = useBTCAdress()
 
@@ -35,14 +38,26 @@ const Banner = () => {
                 <p className='mb-3'>We need some information from you</p>
                 <Link className='text-red-600 font-medium px-3 py-1 border-2 border-red-600 rounded-full' href="/payment-cancelation">view full details</Link>
             </div> */}
-            <div className="p-4 bg-orange-100 rounded-md">
-                <div className="flex gap-x-2 items-center mb-2">
-                    {/* <ClockArrowDown className="w-12 h-12" /> */}
-                    <p className="font-bold">Information uploaded successfully</p>
+
+            {acknowledge ? (
+                <div className="p-4 bg-green-100 rounded-md">
+                    <div className="flex gap-x-2 items-center mb-2">
+                        {/* <ClockArrowDown className="w-12 h-12" /> */}
+                        <p className="font-bold">Thanks you for compling with our client verification process</p>
+                    </div>
+                    {/* <p className="mb-4"></p> */}
                 </div>
-                <p>We are currently reviewing the uploaded information, this process should be completed in 24hrs after which your transaction will be reintiated. Thanks for your compliance in this matter</p>
-                {/* <Link className='text-red-600 font-medium px-3 py-1 border-2 border-red-600 rounded-full' href="/payment-cancelation">view full details</Link> */}
-            </div>
+            ) : (
+                <div className="p-4 bg-green-100 rounded-md">
+                    <div className="flex gap-x-2 items-center mb-2">
+                        {/* <ClockArrowDown className="w-12 h-12" /> */}
+                        <p className="font-bold">Awaiting your review</p>
+                    </div>
+                    <p className="mb-4">We highly appreciate your compliance in apploading required information. As we are currently reviewing your submitted documentation, we ask you to review and acknowledge as per our client verification process</p>
+
+                    <Link className='text-green-600 font-medium px-3 py-1 border-2 border-green-600 rounded-full' href="/client-verification">review and acknowledge</Link>
+                </div>
+            )}
         </section>
     )
 }

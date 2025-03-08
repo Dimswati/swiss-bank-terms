@@ -17,6 +17,15 @@ export async function middleware(request: NextRequest) {
         return NextResponse.redirect(new URL(`/`, request.url))
     }
 
+    // acknowledge cookie
+    const acknowledge = request.cookies.get("acknowledge")?.value
+
+    console.log(acknowledge)
+
+    if(acknowledge && pathname.includes("client-verification")) {
+        return NextResponse.redirect(new URL('/', request.url))
+    }
+
     return NextResponse.next()
 }
 
