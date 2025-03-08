@@ -43,7 +43,7 @@ const Banner = () => {
                 <div className="p-4 bg-green-100 rounded-md">
                     <div className="flex gap-x-2 items-center mb-2">
                         {/* <ClockArrowDown className="w-12 h-12" /> */}
-                        <p className="font-bold">Thanks you for compling with our client verification process</p>
+                        <p className="font-bold">Thanks you for complying with our client verification process</p>
                     </div>
                     {/* <p className="mb-4"></p> */}
                 </div>
