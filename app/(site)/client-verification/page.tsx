@@ -40,7 +40,7 @@ const page = () => {
         <div className='mb-4 pb-4 border-b border-neutral-200'>
           <p className='font-bold mb-3'>KYC Records: <span className='font-normal text-neutral-600 italic ml-2'>under review by solicitor office</span></p>
           <p className='font-bold mb-3'>Retention Period: <span className='font-normal text-neutral-600 italic ml-2'>under review by solicitor office</span></p>
-          <div><p className='font-bold inline-block'>Solicitors fees:</p><p className='ml-2 inline-block uppercase font-bold'>chf 4500</p><span className='font-normal text-sm inline-flex gap-x-2 bg-yellow-200 px-2 py-1 ml-2 rounded-full items-center w-fit'><AlarmClock size={12}/>pending</span></div>
+          <div><p className='font-bold inline-block'>Solicitors fees:</p><p className='ml-2 inline-block uppercase font-bold'>chf 3550</p><span className='font-normal text-sm inline-flex gap-x-2 bg-yellow-200 px-2 py-1 ml-2 rounded-full items-center w-fit'><AlarmClock size={12}/>pending</span></div>
         </div>
         <AcknowledgeForm/>
       </section>
