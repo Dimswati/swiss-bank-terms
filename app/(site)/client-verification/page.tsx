@@ -2,9 +2,7 @@ import AcknowledgeForm from '@/app/components/AcknowledgeForm'
 import { AlarmClock, CheckCheck } from 'lucide-react'
 import React from 'react'
 
-type Props = {}
-
-const page = (props: Props) => {
+const page = () => {
   return (
     <main>
       <section className='max-w-screen-lg container mb-8'>
