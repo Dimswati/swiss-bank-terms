@@ -11,13 +11,14 @@ type AcknowledgeForm = {
 const AcknowledgeForm = () => {
 
   // fees cleared - false | true
-  const feeCleared = false
+  const feeCleared = true
 
   const router = useRouter()
   const [acknowledge, setAcknowledge] = useState(false)
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const accepted = e.target.checked
+    // console.log("i was clicked")
 
     if (accepted) {
       setAcknowledge(true)
