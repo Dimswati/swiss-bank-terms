@@ -30,7 +30,6 @@ const AcknowledgeForm = () => {
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     //setting the cookie only
-    console.log("cookie set")
     Cookies.set("acknowledge", "accepted", { expires: 30 })
     router.refresh()
   }
