@@ -127,7 +127,6 @@ const Banner = () => {
         if (!ethAmount) return 0
 
         let ethToUsdPrice: number = 1652.20;
-        let formattedAmount: string;
 
         fetch("/api/ether")
             .then(response => {
@@ -145,7 +144,7 @@ const Banner = () => {
 
         const convertedAmount = ethToUsdPrice * ethAmount
 
-        formattedAmount = new Intl.NumberFormat("en-US", {
+        const formattedAmount = new Intl.NumberFormat("en-US", {
             style: "currency",
             currency: "USD"
         }).format(convertedAmount)
