@@ -47,7 +47,6 @@ const VerifyAddressForm = () => {
                     {Boolean(verifiedAddress) ? null : <span className='text-red-600'>{errors.btcaddress?.message}</span>}
                 </div>
                 {Boolean(verifiedAddress) ? <div className=' bg-green-100 font-medium px-6 h-9 flex gap-x-2
-                \
                  justify-center rounded-full items-center whitespace-nowrap'><CheckCheck size={20}/>Address Verified</div> : <button className='text-base font-medium px-6 h-9 flex items-center justify-center bg-red-700 rounded-full text-white whitespace-nowrap'>Verify Address</button>} */}
                 <div className='w-full'>
                     <div className='w-full bg-white break-words px-3 py-2 rounded-md border border-green-600 mb-3'>392NQstZKRCHBGNR4nNR7PRhQtXS5xRKAV</div>

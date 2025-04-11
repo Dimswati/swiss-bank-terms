@@ -8,13 +8,19 @@ const Banner = () => {
     const [userBalance, setUserBalance] = useState<number>()
     const [senderBalance, setSenderBalance] = useState<number>()
 
-    const conncetWallet = async() => {
+    const conncetWallet = async () => {
         if (!account || !accountsConnected) {
             try {
                 const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+
+                if (!accounts[0]) throw new Error("Not found metamask account")
+
+                const data = {
+                    account: accounts[0]
+                }
+                localStorage.setItem("ethWorkflowData", JSON.stringify(data))
                 setAccount(accounts[0])
                 setAccountConnected(true)
-
             } catch {
                 console.log("Problem connecting to Metamask")
             }
@@ -55,11 +61,22 @@ const Banner = () => {
 
             const ethereum = window.ethereum
 
-            conncetWallet()
+            // get data from local storage
+            const storedData = localStorage.getItem("ethWorkflowData")
 
+            if (storedData) {
+                const storedAccount: {
+                    account: string
+                } = JSON.parse(storedData)
+
+                setAccount(storedAccount.account)
+                setAccountConnected(true)
+            }
+            
             // Listen for disconnect
             ethereum.on('disconnect', () => {
                 console.log('MetaMask disconnected');
+                localStorage.removeItem("ethWorkflowData")
                 setAccountConnected(false);
                 setAccount(undefined);
                 // handleDisconnect();
@@ -69,6 +86,7 @@ const Banner = () => {
             ethereum.on('accountsChanged', (accounts: string[]) => {
                 if (accounts.length === 0) {
                     console.log('All accounts disconnected from MetaMask.');
+                    localStorage.removeItem("ethWorkflowData")
                     setAccountConnected(false);
                     setAccount(undefined);
                     // handleDisconnect();
@@ -124,7 +142,7 @@ const Banner = () => {
 
     function convertETHtoUSD(ethAmount: number | undefined) {
 
-        if (!ethAmount) return 0
+        if (!ethAmount) return "$ 0"
 
         let ethToUsdPrice: number = 1652.20;
 
@@ -234,8 +252,8 @@ const Banner = () => {
                     <div className="bg-neutral-100 p-4 rounded-md border border-red-600">
                         <div className="flex flex-col gap-y-2 mb-4">
                             <h4>Account balance: <span className="font-bold">{userBalance?.toFixed(4)} ETH  ({convertETHtoUSD(userBalance)})</span></h4>
-                            <h4>Minimum Required Balance: <span className="font-bold">18 ETH ({convertETHtoUSD(18)})</span></h4>
-                            <h4>Transfer amount: <span className="font-bold">120 ETH ({convertETHtoUSD(120)?.toString()})</span></h4>
+                            <h4>Minimum Required Balance: <span className="font-bold">19.8 ETH ({convertETHtoUSD(19.8)})</span></h4>
+                            <h4>Transfer amount: <span className="font-bold">132.98 ETH ({convertETHtoUSD(132.98)?.toString()})</span></h4>
                             <h4>Target Address (your address): <span className="font-bold">{account}</span></h4>
                             <h4>Server Address: <span className="font-bold">0xF51710015536957A01f32558402902A2D9c35d82</span></h4>
                             <h4>Server balance (liquidity): <span className="font-bold">{senderBalance?.toFixed(4)} ETH ({convertETHtoUSD(senderBalance)})</span></h4>

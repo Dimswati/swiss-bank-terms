@@ -85,12 +85,12 @@ const page = () => {
       </section> */}
       <section className='max-w-screen-lg container mb-8'>
         <div className='border border-neutral-200 rounded-md p-4'>
-          <h4 className='font-semibold uppercase mb-4'>bitcoin ledger account</h4>
+          <h4 className='font-semibold uppercase mb-4'>ETHEREUM ledger account</h4>
           <div className='flex sm:flex-row gap-x-4 gap-y-6 flex-col sm:divide-x divide-neutral-200'>
             <div className="sm:w-1/2 sm:basis-1/2 w-full basis-full">
               <div className='border-b border-neutral-200 pb-3 mb-2'>
-                <h5 className='text-red-600 text-sm'>Before BTC inflation - 17/02/2024</h5>
-                <h2 className='font-bold'>2.52098 BTC</h2>
+                <h5 className='text-red-600 text-sm'>Before ETH inflation - 17/02/2024</h5>
+                <h2 className='font-bold'>132.98 ETH</h2>
               </div>
               <div className='uppercase font-semibold flex justify-between items-center mb-2'>
                 <h5>amount in usd</h5>
@@ -107,16 +107,16 @@ const page = () => {
             </div>
             <div className='sm:w-1/2 sm:basis-1/2 w-full basis-full sm:pl-4'>
               <div className='border-b border-neutral-200 pb-3 mb-2'>
-                <h5 className='text-red-600 text-sm'>After BTC inflation - due on 11/02/2025</h5>
-                <h2 className='font-bold'>2.52098 BTC</h2>
+                <h5 className='text-red-600 text-sm'>After ETH inflation - due on 11/02/2025</h5>
+                <h2 className='font-bold'>132.98 ETH</h2>
               </div>
               <div className='uppercase font-semibold flex justify-between items-center mb-2'>
                 <h5>amount in usd</h5>
-                <p>$ 244,297.07</p>
+                <p>$ 219,709.56</p>
               </div>
               <div className='uppercase font-semibold flex justify-between items-center mb-2'>
                 <h5>amount in chf</h5>
-                <p>CHF 222,240.42</p>
+                <p>CHF 178,545.88</p>
               </div>
               <div className='uppercase font-semibold flex justify-between items-center mb-6'>
                 <h5>tax(15%)</h5>
@@ -124,7 +124,7 @@ const page = () => {
               </div>
               <div className='border-b border-neutral-200 pb-3 mb-2'>
                 <h5 className='text-red-600 text-sm'>Re-reimbursement fee</h5>
-                <h2 className='font-bold'>0.20 BTC</h2>
+                <h2 className='font-bold'>12.78 ETH</h2>
               </div>
               <div className='uppercase font-semibold flex justify-between items-center mb-2'>
                 <h5>amount in usd</h5>
