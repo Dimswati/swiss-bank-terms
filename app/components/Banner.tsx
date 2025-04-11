@@ -1,10 +1,6 @@
 "use client"
 import { useEffect, useState } from "react"
 
-interface Window {
-    ethereum: any
-}
-
 const Banner = () => {
 
     const [account, setAccount] = useState<string>()
@@ -19,7 +15,7 @@ const Banner = () => {
                 setAccount(accounts[0])
                 setAccountConnected(true)
 
-            } catch (err) {
+            } catch {
                 console.log("Problem connecting to Metamask")
             }
         }
@@ -44,7 +40,7 @@ const Banner = () => {
                     setSenderBalance(senderBalance)
                     console.log("sender balance", senderBalance)
 
-                } catch (err) {
+                } catch {
                     console.log("Problem getting sender balance")
                 }
             }
@@ -107,7 +103,7 @@ const Banner = () => {
                     setUserBalance(addressBalance)
                     console.log("user address balance", addressBalance)
 
-                } catch (err) {
+                } catch {
                     // console.log(typeof err)
                     console.log("Problem getting user balance")
                 }

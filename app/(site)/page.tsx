@@ -1,8 +1,6 @@
 import { CheckCheck } from 'lucide-react'
 import React from 'react'
-import VerifyAddressForm from '../components/VerifyAddressForm'
 import Banner from '../components/Banner'
-import TransferProcess from '../components/TransferProcess'
 
 const page = () => {
   return (

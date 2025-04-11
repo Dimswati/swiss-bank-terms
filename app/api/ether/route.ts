@@ -1,8 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
-export async function GET(req: NextRequest) {
-
-    // get the ethToUsdPrice
+export async function GET() {
 
     let ethToUsdPrice;
 
@@ -18,7 +16,7 @@ export async function GET(req: NextRequest) {
 
         return NextResponse.json({ ethToUsdPrice })
 
-    } catch (err) {
+    } catch {
         
         return new NextResponse(JSON.stringify({ message: "Unable to get data" }), { status: 401, headers: { "Content-Type": "application/json" } })
     }
