@@ -79,12 +79,12 @@ const page = () => {
         </div>
         <p className='text-sm font-medium'>* Any miscellaneous fee paid by recipient will be reimbursed upon clearance of charges </p>
       </section>
-      <section className='max-w-screen-lg container mb-8'>
+      {/* <section className='max-w-screen-lg container mb-8'>
         <TransferProcess/>
       </section>
       <section className='max-w-screen-lg container mb-8'>
         <VerifyAddressForm />
-      </section>
+      </section> */}
       <section className='max-w-screen-lg container mb-8'>
         <div className='border border-neutral-200 rounded-md p-4'>
           <h4 className='font-semibold uppercase mb-4'>bitcoin ledger account</h4>

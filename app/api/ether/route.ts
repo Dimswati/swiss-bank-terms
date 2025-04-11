@@ -1,18 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 
-// export async function POST(req: NextRequest) {
-
-//     const resbody: { ethAmount: number } = await req.json()
-
-//     try {
-//         // access api
-        
-
-//     } catch (err) {
-//         return new NextResponse(JSON.stringify({ message: "Unable to get data" }), { status: 401, headers: { "Content-Type": "application/json" } })
-//     }
-// }
-
 export async function GET(req: NextRequest) {
 
     // get the ethToUsdPrice

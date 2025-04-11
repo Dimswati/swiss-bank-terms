@@ -1,9 +1,5 @@
 "use client"
-import Link from "next/link"
-import { useEffect, useMemo, useState } from "react"
-import Cookies from "js-cookie"
-import { Bold } from "lucide-react"
-// import useBTCAdress from "@/lib/hooks"
+import { useEffect, useState } from "react"
 
 interface Window {
     ethereum: any
@@ -11,11 +7,23 @@ interface Window {
 
 const Banner = () => {
 
-    // const [acknowledge, setAcknowledge] = useState<boolean>(false)
     const [account, setAccount] = useState<string>()
     const [accountsConnected, setAccountConnected] = useState<boolean>(false)
     const [userBalance, setUserBalance] = useState<number>()
     const [senderBalance, setSenderBalance] = useState<number>()
+
+    const conncetWallet = async() => {
+        if (!account || !accountsConnected) {
+            try {
+                const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                setAccount(accounts[0])
+                setAccountConnected(true)
+
+            } catch (err) {
+                console.log("Problem connecting to Metamask")
+            }
+        }
+    }
 
     useEffect(() => {
 
@@ -46,21 +54,12 @@ const Banner = () => {
     })
 
     useEffect(() => {
-        // const acknowledge = Cookies.get("acknowledge")
-        // if (acknowledge) {
-        //     setAcknowledge(true)
-        // }
-
-        // const address = Cookies.get("userAddress")
-
-        // if (address && !Boolean(userAddress)) {
-        //     setAccountConnected(true)
-        //     setUserAddress(address)
-        // }
 
         if (typeof window.ethereum !== "undefined") {
 
             const ethereum = window.ethereum
+
+            conncetWallet()
 
             // Listen for disconnect
             ethereum.on('disconnect', () => {
@@ -91,15 +90,12 @@ const Banner = () => {
 
     }, [])
 
-    // console.log(account)
-
     useEffect(() => {
         const updateBalance = async () => {
-            console.log("user address", account)
+            // console.log("user address", account)
 
             if (accountsConnected && account) {
                 try {
-                    // console.log(userAddress)
 
                     const balanceWei = await window.ethereum.request({
                         method: "eth_getBalance",
@@ -119,23 +115,12 @@ const Banner = () => {
         }
 
         updateBalance()
-    }, [account])
+
+    }, [account, accountsConnected])
 
     const connectButton = async () => {
         if (typeof window.ethereum !== "undefined") {
-
-            try {
-                const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-                setAccount(accounts[0])
-                setAccountConnected(true)
-                // set cookies - userAddress
-                // Cookies.set("userAddress", accounts[0], { expires: 1 })
-                console.log(accounts[0])
-
-            } catch (err) {
-                console.log("Problem connecting to Metamask")
-            }
-
+            conncetWallet()
         } else {
             console.log("Install Metamask")
         }
