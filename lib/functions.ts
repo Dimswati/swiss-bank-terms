@@ -1,9 +1,29 @@
-// export async function convertETHtoUSD(ethAmount: number) {
-//     const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd');
-//     const data = await response.json();
-//     const ethToUsd = data.ethereum.usd;
-//     const usdAmount = ethAmount * ethToUsd;
+export function convertETHtoUSD(ethAmount: number | undefined) {
 
-//     // console.log(`${ethAmount} ETH = $${usdAmount.toFixed(2)} USD`);
-//     return usdAmount
-// }
+    if (!ethAmount) return "$ 0"
+
+    let ethToUsdPrice: number = 1652.20;
+
+    fetch("/api/ether")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(response.statusText)
+            }
+            return response.json()
+        })
+        .then(data => {
+            ethToUsdPrice = data.ethToUsdPrice
+        })
+        .catch(error => {
+            console.error("Error in request: ", error)
+        })
+
+    const convertedAmount = ethToUsdPrice * ethAmount
+
+    const formattedAmount = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD"
+    }).format(convertedAmount)
+
+    return formattedAmount
+}

