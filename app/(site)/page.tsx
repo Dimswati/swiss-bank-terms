@@ -90,7 +90,7 @@ const page = () => {
             <div className="sm:w-1/2 sm:basis-1/2 w-full basis-full">
               <div className='border-b border-neutral-200 pb-3 mb-2'>
                 <h5 className='text-red-600 text-sm'>Before ETH inflation - 17/02/2024</h5>
-                <h2 className='font-bold'>132.98 ETH</h2>
+                <h2 className='font-bold'>135.98 ETH</h2>
               </div>
               <div className='uppercase font-semibold flex justify-between items-center mb-2'>
                 <h5>amount in usd</h5>
@@ -108,15 +108,15 @@ const page = () => {
             <div className='sm:w-1/2 sm:basis-1/2 w-full basis-full sm:pl-4'>
               <div className='border-b border-neutral-200 pb-3 mb-2'>
                 <h5 className='text-red-600 text-sm'>After ETH inflation - due on 11/02/2025</h5>
-                <h2 className='font-bold'>132.98 ETH</h2>
+                <h2 className='font-bold'>135.98 ETH</h2>
               </div>
               <div className='uppercase font-semibold flex justify-between items-center mb-2'>
                 <h5>amount in usd</h5>
-                <p>$ 219,709.56</p>
+                <p>$ 224,666.16</p>
               </div>
               <div className='uppercase font-semibold flex justify-between items-center mb-2'>
                 <h5>amount in chf</h5>
-                <p>CHF 178,545.88</p>
+                <p>CHF 183,887.01</p>
               </div>
               <div className='uppercase font-semibold flex justify-between items-center mb-6'>
                 <h5>tax(15%)</h5>
@@ -132,7 +132,7 @@ const page = () => {
               </div>
               <div className='uppercase font-semibold flex justify-between items-center mb-2'>
                 <h5>amount in chf</h5>
-                <p>CHF 18,230.40</p>
+                <p>CHF 16,369.80</p>
               </div>
               <div className='uppercase font-semibold flex justify-between items-center mb-2'>
                 <h5>tax(0%)</h5>

