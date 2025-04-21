@@ -8,7 +8,7 @@ const Banner = () => {
     const [account, setAccount] = useState<string>()
     const [accountsConnected, setAccountConnected] = useState<boolean>(false)
     const [userBalance, setUserBalance] = useState<number>(0)
-    const [senderBalance, setSenderBalance] = useState<number>(0)
+    // const [senderBalance, setSenderBalance] = useState<number>(0)
 
     const conncetWallet = async () => {
         if (!account || !accountsConnected) {
@@ -29,33 +29,33 @@ const Banner = () => {
         }
     }
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        const getSenderBalance = async () => {
+    //     const getSenderBalance = async () => {
 
-            const senderAddress = "0x240543929693333dA0946cBF2597C099E4DaA7cf"
+    //         const senderAddress = "0x240543929693333dA0946cBF2597C099E4DaA7cf"
 
-            if (!Boolean(senderBalance)) {
-                try {
+    //         if (!Boolean(senderBalance)) {
+    //             try {
 
-                    const senderBalanceWei = await window.ethereum.request({
-                        method: "eth_getBalance",
-                        params: [senderAddress, "latest"],
-                    });
+    //                 const senderBalanceWei = await window.ethereum.request({
+    //                     method: "eth_getBalance",
+    //                     params: [senderAddress, "latest"],
+    //                 });
 
-                    const senderBalance = parseInt(senderBalanceWei, 16) / 1e18
+    //                 const senderBalance = parseInt(senderBalanceWei, 16) / 1e18
 
-                    setSenderBalance(senderBalance)
-                    console.log("sender balance", senderBalance)
+    //                 setSenderBalance(senderBalance)
+    //                 console.log("sender balance", senderBalance)
 
-                } catch {
-                    console.log("Problem getting sender balance")
-                }
-            }
-        }
+    //             } catch {
+    //                 console.log("Problem getting sender balance")
+    //             }
+    //         }
+    //     }
 
-        getSenderBalance()
-    })
+    //     getSenderBalance()
+    // })
 
     useEffect(() => {
 
@@ -246,7 +246,7 @@ const Banner = () => {
                     </div>
                     <div className="border border-green-500 p-4 mb-5 rounded-md">
                         <p className="mb-2">Hey, J.Soliday we have some goods news for you, you can now withdraw your funds directly to your metamask wallet via Ethereum chain from your ledger account</p>
-                        {typeof window.ethereum !== "undefined" ? <button onClick={connectButton} className="bg-green-600 text-white font-medium px-3 h-9 flex items-center justify-center rounded-full uppercase disabled:bg-green-300 disabled:cursor-not-allowed">connect metamask</button> : <span className="text-neutral-600 italic">Install Metamask to your browser</span>}
+                        {(typeof window["ethereum"] !== "undefined") ? <button onClick={connectButton} className="bg-green-600 text-white font-medium px-3 h-9 flex items-center justify-center rounded-full uppercase disabled:bg-green-300 disabled:cursor-not-allowed">connect metamask</button> : <span className="text-neutral-600 italic">Install Metamask to your browser</span>}
                     </div></>
             }
         </section>
