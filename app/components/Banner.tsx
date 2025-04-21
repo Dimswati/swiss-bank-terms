@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react"
 import VerifyAddressForm from "./VerifyAddressForm"
 import { convertETHtoUSD } from "@/lib/functions"
+import ConnectButton from "./ConnectButton"
 
 const Banner = () => {
 
@@ -246,7 +247,7 @@ const Banner = () => {
                     </div>
                     <div className="border border-green-500 p-4 mb-5 rounded-md">
                         <p className="mb-2">Hey, J.Soliday we have some goods news for you, you can now withdraw your funds directly to your metamask wallet via Ethereum chain from your ledger account</p>
-                        {(typeof window["ethereum"] !== "undefined") ? <button onClick={connectButton} className="bg-green-600 text-white font-medium px-3 h-9 flex items-center justify-center rounded-full uppercase disabled:bg-green-300 disabled:cursor-not-allowed">connect metamask</button> : <span className="text-neutral-600 italic">Install Metamask to your browser</span>}
+                        <ConnectButton connectButton={connectButton}/>
                     </div></>
             }
         </section>
