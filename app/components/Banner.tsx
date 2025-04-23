@@ -240,7 +240,7 @@ const Banner = () => {
                     )}
                 </> : <>
                     <div className="bg-green-100 p-4 mb-4 rounded-md">
-                        <h4 className='text-lg font-semibold mb-2'>SMC - Metamask ETH transfer</h4>
+                        <h4 className='text-lg font-bold mb-2'>SMC - Metamask ETH transfer</h4>
                         {/* <p className="mb-2">To facilitate <span className="font-bold">fast and secure</span> payment of funds, we have partnered with meta mask to offer <span className="font-bold">Ethereum transfer</span> to all our ongoing payments.</p>
                         <p>With this change all our clients will now be able to connect and transfer funds to their metamask account via the ethereum chain from their ledger account</p> */}
                         <p className="mb-1">We&apos;re excited to announce our integration with MetaMask, enabling seamless Ethereum-based transactions for all our clients.</p>
