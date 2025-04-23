@@ -11,7 +11,7 @@ const Header = () => {
                 <div className='flex gap-x-2 items-center'>
                     <div className='w-full flex flex-col'>
                         <h4 className='uppercase font-bold text-right'>john soliday</h4>
-                            <span className='uppercase text-sm text-red-500 font-medium text-right'>btc ledger</span>
+                            <span className='uppercase text-sm text-red-500 font-medium text-right'>eth ledger</span>
                     </div>
                     <UserRound />
                 </div>
