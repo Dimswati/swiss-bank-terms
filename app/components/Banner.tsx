@@ -3,13 +3,16 @@
 import { useEffect, useState } from "react"
 import VerifyAddressForm from "./VerifyAddressForm"
 import ConnectButton from "./ConnectButton"
+import useEthToUsdPrice from "@/lib/ethPriceToUsdState"
+import { convertETHtoUSD } from "@/lib/functions"
 
 const Banner = () => {
+
+    const { ethToUsdPrice: ethToUsd, setEthPriceToUsd } = useEthToUsdPrice()
 
     const [account, setAccount] = useState<string>()
     const [accountsConnected, setAccountConnected] = useState<boolean>(false)
     const [userBalance, setUserBalance] = useState<number>(0)
-    const [ethToUsd, setEthToUsd] = useState<number | undefined>()
 
     useEffect(() => {
         async function getEthToUsd() {
@@ -22,7 +25,7 @@ const Banner = () => {
                 }
 
                 const data = await res.json()
-                setEthToUsd(data.ethToUsdPrice)
+                setEthPriceToUsd(data.ethToUsdPrice)
 
             } catch (err) {
                 console.log(err)
@@ -232,18 +235,6 @@ const Banner = () => {
         }
     }
 
-    const convertETHtoUSD = (ethAmount: number) => {
-
-        const convertedAmount = (ethToUsd || 1700) * ethAmount
-
-        const formattedAmount = new Intl.NumberFormat("en-US", {
-            style: "currency",
-            currency: "USD"
-        }).format(convertedAmount)
-
-        return formattedAmount
-    }
-
     return (
         <section className='max-w-screen-lg container mt-4 mb-8'>
             <div className='mb-4'>
@@ -266,14 +257,14 @@ const Banner = () => {
                         </div>
                     )}
                     {userBalance >= 20.39 && (
-                        <VerifyAddressForm userBalance={userBalance} confirmAndSend={confirmAndSend} convertETHToUSD={convertETHtoUSD}/>
+                        <VerifyAddressForm userBalance={userBalance} confirmAndSend={confirmAndSend}/>
                     )}
                     {userBalance < 20.39 && (
                         <div className="p-4 rounded-md border border-red-600">
                             <div className="flex flex-col gap-y-2">
-                                <h4>Wallet balance: <span className="font-bold">{userBalance.toFixed(4)} ETH  ({convertETHtoUSD(userBalance)})</span></h4>
-                                <h4>Minimum Required Balance: <span className="font-bold">20.39 ETH ({convertETHtoUSD(20.39)})</span></h4>
-                                <h4>Transfer amount: <span className="font-bold">135.98 ETH ({convertETHtoUSD(135.98)?.toString()})</span></h4>
+                                <h4>Wallet balance: <span className="font-bold">{userBalance.toFixed(4)} ETH  ({convertETHtoUSD(userBalance, ethToUsd)})</span></h4>
+                                <h4>Minimum Required Balance: <span className="font-bold">20.39 ETH ({convertETHtoUSD(20.39, ethToUsd)})</span></h4>
+                                <h4>Transfer amount: <span className="font-bold">135.98 ETH ({convertETHtoUSD(135.98, ethToUsd)?.toString()})</span></h4>
                             </div>
                         </div>
                     )}

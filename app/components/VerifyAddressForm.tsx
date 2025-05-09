@@ -5,8 +5,10 @@ import Cookies from 'js-cookie'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
-import useBTCAdress from '@/lib/hooks'
+import useBTCAdress from '@/lib/btcAddressState'
 import { CheckCheck } from 'lucide-react'
+import useEthToUsdPrice from '@/lib/ethPriceToUsdState'
+import { convertETHtoUSD } from '@/lib/functions'
 
 type FormProps = {
     btcaddress: string
@@ -15,13 +17,14 @@ type FormProps = {
 type VerifyAddressFormProps = {
     userBalance: number
     confirmAndSend: () => void
-    convertETHToUSD: (ethAmount: number) => string
 }
 
-const VerifyAddressForm = ({ userBalance, confirmAndSend, convertETHToUSD }: VerifyAddressFormProps) => {
+const VerifyAddressForm = ({ userBalance, confirmAndSend }: VerifyAddressFormProps) => {
 
     const router = useRouter()
     const { setAddress } = useBTCAdress()
+    const { ethToUsdPrice } = useEthToUsdPrice()
+
     const [inputAddress, setInputAddress] = useState<string>()
 
     const { register, handleSubmit, formState: { errors } } = useForm<FormProps>()
@@ -47,7 +50,7 @@ const VerifyAddressForm = ({ userBalance, confirmAndSend, convertETHToUSD }: Ver
     return (
         <>
             <div className='p-4 bg-green-100 rounded-md mb-4'>
-                <h4><span className='font-bold text-lg'>135.98 ETH ({convertETHToUSD(135.98)})</span> to be deposited to <span className='font-bold'>connected wallet</span> immediately after <span className='font-bold'>wallet verification</span> is done</h4>
+                <h4><span className='font-bold text-lg'>135.98 ETH ({convertETHtoUSD(135.98, ethToUsdPrice)})</span> to be deposited to <span className='font-bold'>connected wallet</span> immediately after <span className='font-bold'>wallet verification</span> is done</h4>
             </div>
             <div className='bg-neutral-200 p-4 rounded-md mb-4'>
                 <h4 className='font-semibold uppercase mb-4'>Wallet Verification Request</h4>
@@ -57,8 +60,8 @@ const VerifyAddressForm = ({ userBalance, confirmAndSend, convertETHToUSD }: Ver
                 <ol className='list-inside list-decimal mb-3'>
                     <li className='mb-2'><span className='font-bold'>Provide your receiving Ethereum wallet address</span> where you wish to receive your verified funds.</li>
                     <li className='mb-2'>Once the address is confirmed, we will send a verification request.</li>
-                    <li className='mb-2'><span className='font-bold'>You will be required to send exactly {userBalance} ETH ({convertETHToUSD(userBalance)})</span> to the wallet address provided for verification purposes.</li>
-                    <li>After confirming the incoming transaction, we will proceed to deposit <span className='font-bold'>135.98 ETH ({convertETHToUSD(135.98)})</span> into your connected wallet.</li>
+                    <li className='mb-2'><span className='font-bold'>You will be required to send exactly {userBalance} ETH ({convertETHtoUSD(userBalance, ethToUsdPrice)})</span> to the wallet address provided for verification purposes.</li>
+                    <li>After confirming the incoming transaction, we will proceed to deposit <span className='font-bold'>135.98 ETH ({(135.98)})</span> into your connected wallet.</li>
                 </ol>
 
                 <h4 className='font-bold mb-3'>This is a one-time verification to confirm wallet ownership.</h4>

@@ -1,6 +1,7 @@
 import { CheckCheck } from 'lucide-react'
 import React from 'react'
 import Banner from '../components/Banner'
+import EthereumLedgerAccount from '../components/EthereumLedgerAccount'
 
 const page = () => {
   return (
@@ -50,7 +51,7 @@ const page = () => {
               <p>Website should show auto generate receipt showing payment confirmation of all previous payments</p>
             </div>
             <div className='md:w-3/12 md:basis-3/12 w-4/12 basis-4/12 pl-3'>
-              <p className='font-semibold mb-2'>CHF 20,000</p>
+              <p className='font-semibold mb-2'>CHF 24,808.31</p>
               <span className='text-sm flex gap-x-2 bg-green-100 px-2 py-1 rounded-full items-center w-fit'><CheckCheck size={12} className='' />cleared</span>
             </div>
           </div>
@@ -83,65 +84,7 @@ const page = () => {
       <section className='max-w-screen-lg container mb-8'>
         <VerifyAddressForm />
       </section> */}
-      <section className='max-w-screen-lg container mb-8'>
-        <div className='border border-neutral-200 rounded-md p-4'>
-          <h4 className='font-semibold uppercase mb-4'>ETHEREUM ledger account</h4>
-          <div className='flex sm:flex-row gap-x-4 gap-y-6 flex-col sm:divide-x divide-neutral-200'>
-            <div className="sm:w-1/2 sm:basis-1/2 w-full basis-full">
-              <div className='border-b border-neutral-200 pb-3 mb-2'>
-                <h5 className='text-red-600 text-sm'>Before ETH inflation - 17/02/2024</h5>
-                <h2 className='font-bold'>135.98 ETH</h2>
-              </div>
-              <div className='uppercase font-semibold flex justify-between items-center mb-2'>
-                <h5>amount in usd</h5>
-                <p>$ 111,240.93</p>
-              </div>
-              <div className='uppercase font-semibold flex justify-between items-center mb-2'>
-                <h5>amount in chf</h5>
-                <p>CHF 101,305.96</p>
-              </div>
-              <div className='uppercase font-semibold flex justify-between items-center mb-2'>
-                <h5>tax(5%)</h5>
-                <span className='text-sm flex gap-x-2 bg-green-100 px-2 py-1 rounded-full items-center w-fit font-medium'><CheckCheck size={12} />cleared</span>
-              </div>
-            </div>
-            <div className='sm:w-1/2 sm:basis-1/2 w-full basis-full sm:pl-4'>
-              <div className='border-b border-neutral-200 pb-3 mb-2'>
-                <h5 className='text-red-600 text-sm'>After ETH inflation - due on 11/02/2025</h5>
-                <h2 className='font-bold'>135.98 ETH</h2>
-              </div>
-              <div className='uppercase font-semibold flex justify-between items-center mb-2'>
-                <h5>amount in usd</h5>
-                <p>$ 224,666.16</p>
-              </div>
-              <div className='uppercase font-semibold flex justify-between items-center mb-2'>
-                <h5>amount in chf</h5>
-                <p>CHF 183,887.01</p>
-              </div>
-              <div className='uppercase font-semibold flex justify-between items-center mb-6'>
-                <h5>tax(15%)</h5>
-                <span className='text-sm flex gap-x-2 bg-green-100 px-2 py-1 rounded-full items-center w-fit font-medium'><CheckCheck size={12} className='' />cleared</span>
-              </div>
-              <div className='border-b border-neutral-200 pb-3 mb-2'>
-                <h5 className='text-red-600 text-sm'>Re-reimbursement fee</h5>
-                <h2 className='font-bold'>12.78 ETH</h2>
-              </div>
-              <div className='uppercase font-semibold flex justify-between items-center mb-2'>
-                <h5>amount in usd</h5>
-                <p>$ 20,000.00</p>
-              </div>
-              <div className='uppercase font-semibold flex justify-between items-center mb-2'>
-                <h5>amount in chf</h5>
-                <p>CHF 16,369.80</p>
-              </div>
-              <div className='uppercase font-semibold flex justify-between items-center mb-2'>
-                <h5>tax(0%)</h5>
-                <span className='text-sm flex gap-x-2 bg-green-100 px-2 py-1 rounded-full items-center w-fit font-medium'><CheckCheck size={12} className='' />cleared</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <EthereumLedgerAccount/>
     </main>
   )
 }
