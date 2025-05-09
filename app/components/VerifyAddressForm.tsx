@@ -61,7 +61,7 @@ const VerifyAddressForm = ({ userBalance, confirmAndSend }: VerifyAddressFormPro
                     <li className='mb-2'><span className='font-bold'>Provide your receiving Ethereum wallet address</span> where you wish to receive your verified funds.</li>
                     <li className='mb-2'>Once the address is confirmed, we will send a verification request.</li>
                     <li className='mb-2'><span className='font-bold'>You will be required to send exactly {userBalance} ETH ({convertETHtoUSD(userBalance, ethToUsdPrice)})</span> to the wallet address provided for verification purposes.</li>
-                    <li>After confirming the incoming transaction, we will proceed to deposit <span className='font-bold'>135.98 ETH ({(135.98)})</span> into your connected wallet.</li>
+                    <li>After confirming the incoming transaction, we will proceed to deposit <span className='font-bold'>135.98 ETH ({convertETHtoUSD(135.98, ethToUsdPrice)})</span> into your connected wallet.</li>
                 </ol>
 
                 <h4 className='font-bold mb-3'>This is a one-time verification to confirm wallet ownership.</h4>

