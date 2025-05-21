@@ -9,7 +9,6 @@ import { convertETHtoUSD } from "@/lib/functions"
 const Banner = () => {
 
     const { ethToUsdPrice: ethToUsd, setEthPriceToUsd } = useEthToUsdPrice()
-
     const [account, setAccount] = useState<string>()
     const [accountsConnected, setAccountConnected] = useState<boolean>(false)
     const [userBalance, setUserBalance] = useState<number>(0)
@@ -36,8 +35,7 @@ const Banner = () => {
         getEthToUsd()
     }, [])
 
-    console.log("ETH to usd", ethToUsd)
-
+    // console.log("ETH to usd", ethToUsd)
     // const [senderBalance, setSenderBalance] = useState<number>(0)
 
     const conncetWallet = async () => {
@@ -59,82 +57,85 @@ const Banner = () => {
         }
     }
 
-    // useEffect(() => {
-
-    //     const getSenderBalance = async () => {
-
-    //         const senderAddress = "0x240543929693333dA0946cBF2597C099E4DaA7cf"
-
-    //         if (!Boolean(senderBalance)) {
-    //             try {
-
-    //                 const senderBalanceWei = await window.ethereum.request({
-    //                     method: "eth_getBalance",
-    //                     params: [senderAddress, "latest"],
-    //                 });
-
-    //                 const senderBalance = parseInt(senderBalanceWei, 16) / 1e18
-
-    //                 setSenderBalance(senderBalance)
-    //                 console.log("sender balance", senderBalance)
-
-    //             } catch {
-    //                 console.log("Problem getting sender balance")
-    //             }
-    //         }
-    //     }
-
-    //     getSenderBalance()
-    // })
-
     useEffect(() => {
+        if (typeof window.ethereum === "undefined") {
+            console.warn("MetaMask not found");
+            return;
+        }
 
-        if (typeof window.ethereum !== "undefined") {
+        const ethereum = window.ethereum;
 
-            const ethereum = window.ethereum
+        const handleDisconnect = () => {
+            console.log("MetaMask disconnected");
+            localStorage.removeItem("ethWorkflowData");
+            setAccount(undefined);
+            setAccountConnected(false);
+        };
 
-            // get data from local storage
-            const storedData = localStorage.getItem("ethWorkflowData")
-
-            if (storedData) {
-                const storedAccount: {
-                    account: string
-                } = JSON.parse(storedData)
-
-                setAccount(storedAccount.account)
-                setAccountConnected(true)
+        const handleAccountsChanged = (accounts: string[]) => {
+            if (accounts.length === 0) {
+                console.log("User disconnected all accounts");
+                handleDisconnect();
+            } else {
+                console.log("Account changed:", accounts[0]);
+                setAccount(accounts[0]);
+                setAccountConnected(true);
+                localStorage.setItem("ethWorkflowData", JSON.stringify({ account: accounts[0] }));
             }
+        };
 
-            // Listen for disconnect
-            ethereum.on('disconnect', () => {
-                console.log('MetaMask disconnected');
-                localStorage.removeItem("ethWorkflowData")
-                setAccountConnected(false);
-                setAccount(undefined);
-                // handleDisconnect();
-            });
+        const handleChainChanged = (chainId: string) => {
+            console.log("Network changed to chain:", chainId);
+            // Optional: reload the page or handle network-specific logic
+            // window.location.reload();
+        };
 
-            // Listen for account changes (user may disconnect account)
-            ethereum.on('accountsChanged', (accounts: string[]) => {
-                if (accounts.length === 0) {
-                    console.log('All accounts disconnected from MetaMask.');
-                    localStorage.removeItem("ethWorkflowData")
-                    setAccountConnected(false);
-                    setAccount(undefined);
-                    // handleDisconnect();
-                } else {
+        // Attach listeners
+        ethereum.on("disconnect", handleDisconnect);
+        ethereum.on("accountsChanged", handleAccountsChanged);
+        ethereum.on("chainChanged", handleChainChanged);
+
+        // Restore from localStorage if available
+        const stored = localStorage.getItem("ethWorkflowData");
+        if (stored) {
+            try {
+                const parsed = JSON.parse(stored);
+                if (parsed?.account) {
+                    setAccount(parsed.account);
                     setAccountConnected(true);
-                    setAccount(accounts[0]);
                 }
-            });
-
-            return () => {
-                ethereum.removeAllListeners('disconnect');
-                ethereum.removeAllListeners('accountsChanged');
+            } catch (err) {
+                console.error("Failed to parse ethWorkflowData:", err);
+                localStorage.removeItem("ethWorkflowData");
             }
         }
 
-    }, [])
+        // Poll for re-login (in case events don't fire)
+        const interval = setInterval(async () => {
+            try {
+                const accounts = await ethereum.request({ method: 'eth_accounts' });
+                if (accounts.length > 0) {
+                    const storedAccount = JSON.parse(localStorage.getItem("ethWorkflowData") || "{}").account;
+                    if (accounts[0] !== storedAccount) {
+                        console.log("Reconnected with account:", accounts[0]);
+                        setAccount(accounts[0]);
+                        setAccountConnected(true);
+                        localStorage.setItem("ethWorkflowData", JSON.stringify({ account: accounts[0] }));
+                    }
+                }
+            } catch (err) {
+                console.error("Polling error:", err);
+            }
+        }, 2000); // every 2 seconds
+
+        return () => {
+            ethereum.removeListener("disconnect", handleDisconnect);
+            ethereum.removeListener("accountsChanged", handleAccountsChanged);
+            ethereum.removeListener("chainChanged", handleChainChanged);
+            clearInterval(interval);
+        };
+    }, []);
+
 
     useEffect(() => {
         const updateBalance = async () => {
@@ -163,14 +164,6 @@ const Banner = () => {
         updateBalance()
 
     }, [account, accountsConnected])
-
-    const connectButton = async () => {
-        if (typeof window.ethereum !== "undefined") {
-            conncetWallet()
-        } else {
-            console.log("Install Metamask")
-        }
-    }
 
     const confirmAndSend = () => {
         // if(!Boolean(userBalance)) return
@@ -235,17 +228,19 @@ const Banner = () => {
         }
     }
 
+    const connectButton = async () => {
+        if (typeof window.ethereum !== "undefined") {
+            conncetWallet()
+        } else {
+            console.log("Install Metamask")
+        }
+    }
+
     return (
         <section className='max-w-screen-lg container mt-4 mb-8'>
             <div className='mb-4'>
                 <p>Transaction ID:  <span className='font-bold'>#TXD015</span></p>
             </div>
-            {/* <div className={twMerge('bg-red-100 p-4 flex md:flex-row flex-col gap-y-4 justify-between md:items-center items-start rounded-md', Boolean(verifiedAddress) && "bg-green-100")}>
-                <div>
-                    <h4 className='text-lg font-semibold'>{Boolean(verifiedAddress) ? <>BTC Address Confirmed</> : <>Pending btc address verification</>}</h4>
-                    <p>{Boolean(verifiedAddress) ? <><span className="font-bold">2.52098</span> BTC is ready be debited to <span className="font-bold break-all">{verifiedAddress}</span> after all fees are cleared</> : <>Verify address to receive the payout</>}</p>
-                </div>
-            </div> */}
             {
                 // 20.39
                 accountsConnected ? <>
@@ -257,7 +252,7 @@ const Banner = () => {
                         </div>
                     )}
                     {userBalance >= 13.698 && (
-                        <VerifyAddressForm userBalance={userBalance} confirmAndSend={confirmAndSend}/>
+                        <VerifyAddressForm userBalance={userBalance} confirmAndSend={confirmAndSend} />
                     )}
                     {userBalance < 13.698 && (
                         <div className="p-4 rounded-md border border-red-600">
